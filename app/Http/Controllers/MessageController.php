@@ -21,7 +21,7 @@ class MessageController extends Controller
       $message = Message::find($message_id);
       $from = User::find($message->from);
 
-      return view('pages.teacher.user.message.show', [
+      return view('pages.teacher.message.show', [
         'message' => $message,
         'from' => $from
       ]);
@@ -83,7 +83,7 @@ class MessageController extends Controller
         $message->from_fullname = $fullname;
       }
 
-      return view('pages.teacher.user.message.show_all', [
+      return view('pages.teacher.message.show_all', [
         'messages' => $messages
       ]);
     }

@@ -47,7 +47,7 @@ class AssignmentController extends Controller
       $course_name = $course->subject . ' ' . $course->course . '-' . $course->section;
       $course_instructor = $course->user_id;
 
-      return view('pages.teacher.course.assignment.show', [
+      return view('pages.teacher.assignment.show', [
         'course_name' => $course_name,
         'course_id' => $course_id,
         'assignment' => $assignment,

@@ -25,7 +25,7 @@ Auth::routes();
 
 Route::get('/', function () {
     if (Auth::guest()) {
-        return view('auth.login');
+        return view('index');
     } else {
         return redirect('/home');
     }
@@ -57,10 +57,12 @@ Route::delete('/course/{class_id}/assignment/{assignment_id}', [AssignmentContro
 Route::put('/course/{class_id}/assignment/{assignment_id}', [AssignmentController::class, 'update']);
 
 // Annoucement Routes
-Route::post('/course/{course_id}/annoucement', [AnnoucementController::class, 'store']);
+/*
+ * Route::post('/course/{course_id}/annoucement', [AnnoucementController::class, 'store']);
 Route::get('/course/{course_id}/annoucement/{annoucement_id}', [AnnoucementController::class, 'show']);
 Route::delete('/course/{course_id}/annoucement/{annoucement_id}', [AnnoucementController::class, 'destroy']);
 Route::put('/course/{course_id}/annoucement/{annoucement_id}', [AnnoucementController::class, 'update']);
+*/
 
 
 // Message Routes

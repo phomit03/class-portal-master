@@ -7440,7 +7440,9 @@ label img {
     background: #FAFAFA; }
 .site-footer .footer-site-logo {
     margin-bottom: 10px;
+    /*
     height: 24px;
+    */
     width: 153px; }
 .site-footer h3 {
     padding-top: 0px;

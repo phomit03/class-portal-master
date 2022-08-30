@@ -35,34 +35,22 @@
 
     <!-- main content -->
     <main id="site-main" class="site-main">
-        @if (Auth::user()->role == 'student')
-            <div class="container wrap-list-classes">
-                <div class=" edn-tabs">
-                    <div id="tab-home-page" class="group-head-tab-control hidden ">
-                        @yield('content')
-                    </div>
-                </div>
-            </div>
-        @endif
-        @if(Auth::user()->role == 'teacher')
-            <div class="container wrap-list-classes" style="margin: 15px auto 40px auto">
-                <div class="container">
+        <div class="container wrap-list-classes">
+            <div class=" edn-tabs">
+                <div id="tab-home-page" class="group-head-tab-control hidden ">
                     <div class="page-header" style="margin: 20px 0px 20px 0px;">
                         <h2 class="text-right">@yield('page-header')</h2>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12 col-md-4">
-                            @yield('side-content')
-                        </div>
-                        <div class="col-xs-12 col-md-8">
-                            @yield('content')
-                        </div>
+                        @yield('content')
                     </div>
                 </div>
             </div>
-        @endif
+        </div>
     </main>
     <!-- end main content -->
+
+    @include('layouts.footer')
 
     <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
