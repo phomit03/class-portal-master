@@ -8,11 +8,11 @@
     <!--side-content-->
     <div class="col-xs-12 col-md-4">
         <div class="well">
-            <h4>Courses</h4>
-            @if (count(Auth::user()->courses()->get()) > 0)
+            <h4>classes</h4>
+            @if (count(Auth::user()->classes()->get()) > 0)
                 <div class="list-group">
-                    @foreach (Auth::user()->courses()->get() as $course)
-                        <a href="{{ url('course/' . $course->id) }}" class="list-group-item list-group-item-info">
+                    @foreach (Auth::user()->classes()->get() as $course)
+                        <a href="{{ url('class/' . $course->id) }}" class="list-group-item list-group-item-info">
                             <h4 class="list-group-item-heading">
                                 {{ $course->subject }} {{ $course->course }}-{{ $course->section }}
                             </h4>
@@ -22,9 +22,9 @@
                 </div>
             @else
                 @if (Auth::user()->role == 'teacher')
-                    <div class="alert alert-danger" role="alert">You do not have any active courses.</div>
+                    <div class="alert alert-danger" role="alert">You do not have any active classes.</div>
                 @else
-                    <div class="alert alert-danger" role="alert">You are no taking any courses.</div>
+                    <div class="alert alert-danger" role="alert">You are no taking any classes.</div>
                 @endif
             @endif
         </div>
@@ -53,7 +53,7 @@
                     <h4>Assignments</h4>
                     <div class="list-group">
                         @foreach ($assignments as $assignment)
-                            <a href="{{ url('/course/' . $course_id . '/assignment/' . $assignment->id) }}" class="list-group-item list-group-item-info">
+                            <a href="{{ url('/class/' . $course_id . '/assignment/' . $assignment->id) }}" class="list-group-item list-group-item-info">
                                 <h4 class="list-group-item-heading">{{ $assignment->title }}</h4>
                                 <p class="list-group-item-text">Due Date: <u>{{ date('F jS Y \a\t h:i A', strtotime($assignment->due_date)) }}</u></p>
                             </a>
@@ -82,7 +82,7 @@
                         <div class="list-group">
                             @foreach ($recent_activity as $activity)
                                 @if ($activity->type == 'assignment')
-                                    <a href="{{ url('/course/' . $activity->course_id . '/assignment/' . $activity->id) }}"
+                                    <a href="{{ url('/class/' . $activity->course_id . '/assignment/' . $activity->id) }}"
                                        class="list-group-item list-group-item-success">
                                         <h4 class="list-group-item-heading">{{ $activity->course_info }}
                                             - {{ $activity->title }}</h4>
@@ -92,7 +92,7 @@
                                         </p>
                                     </a>
                                 @else
-                                    <a href="{{ url('/course/' . $activity->course_id . '/annoucement/' . $activity->id) }}"
+                                    <a href="{{ url('/class/' . $activity->course_id . '/annoucement/' . $activity->id) }}"
                                        class="list-group-item list-group-item-info">
                                         <h4 class="list-group-item-heading">{{ $activity->course_info }}
                                             - {{ $activity->title }}</h4>

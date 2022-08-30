@@ -8,23 +8,23 @@
     <!--side-content-->
     <div class="col-xs-12 col-md-4">
         <div class="well">
-            <h4>Courses</h4>
-            @if (count(Auth::user()->courses()->get()) > 0)
+            <h4>classes</h4>
+            @if (count(Auth::user()->classes()->get()) > 0)
                 <div class="list-group">
-                    @foreach (Auth::user()->courses()->get() as $course)
-                        <a href="{{ url('course/' . $course->id) }}" class="list-group-item list-group-item-info">
+                    @foreach (Auth::user()->classes()->get() as $class)
+                        <a href="{{ url('class/' . $class->id) }}" class="list-group-item list-group-item-info">
                             <h4 class="list-group-item-heading">
-                                {{ $course->subject }} {{ $course->course }}-{{ $course->section }}
+                                {{ $class->subject }} {{ $class->class }}-{{ $class->section }}
                             </h4>
-                            <p class="list-group-item-text">{{ $course->title }}</p>
+                            <p class="list-group-item-text">{{ $class->title }}</p>
                         </a>
                     @endforeach
                 </div>
             @else
                 @if (Auth::user()->role == 'teacher')
-                    <div class="alert alert-danger" role="alert">You do not have any active courses.</div>
+                    <div class="alert alert-danger" role="alert">You do not have any active classes.</div>
                 @else
-                    <div class="alert alert-danger" role="alert">You are no taking any courses.</div>
+                    <div class="alert alert-danger" role="alert">You are no taking any classes.</div>
                 @endif
             @endif
         </div>
@@ -53,7 +53,7 @@
                     <h4>Assignments</h4>
                     <div class="list-group">
                         @foreach ($assignments as $assignment)
-                            <a href="{{ url('/course/' . $course_id . '/assignment/' . $assignment->id) }}" class="list-group-item list-group-item-info">
+                            <a href="{{ url('/class/' . $class_id . '/assignment/' . $assignment->id) }}" class="list-group-item list-group-item-info">
                                 <h4 class="list-group-item-heading">{{ $assignment->title }}</h4>
                                 <p class="list-group-item-text">Due Date: <u>{{ date('F jS Y \a\t h:i A', strtotime($assignment->due_date)) }}</u></p>
                             </a>
@@ -80,13 +80,13 @@
                 <div class="col-xs-12 col-md-10 col-md-offset-1">
                     <div class="well">
                         <h3>{{ $annoucement->title }}</h3>
-                        <h4>{{ $course->subject }} {{ $course->course }}-{{ $course->section }}</h4>
+                        <h4>{{ $class->subject }} {{ $class->class }}-{{ $class->section }}</h4>
                         <br/>
                         <p> {{ $annoucement->message }}</p>
                     </div>
-                    @if (Auth::user()->id == $course->user_id)
+                    @if (Auth::user()->id == $class->user_id)
                         <form role="form" method="POST"
-                              action="{{ url('/course/' . $course->id . '/annoucement/' . $annoucement->id) }}">
+                              action="{{ url('/class/' . $class->id . '/annoucement/' . $annoucement->id) }}">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
 
@@ -98,7 +98,7 @@
             </div>
         </div>
 
-        @if (Auth::user()->id == $course->user_id)
+        @if (Auth::user()->id == $class->user_id)
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 class="panel-title">
@@ -109,7 +109,7 @@
                 <div class="panel-body">
                     <div class="col-xs-12 col-md-10 col-md-offset-1">
                         <form class="form-horizontal" role="form" method="POST"
-                              action="{{ url('/course/' . $course->id . '/annoucement/' . $annoucement->id) }}">
+                              action="{{ url('/class/' . $class->id . '/annoucement/' . $annoucement->id) }}">
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
 

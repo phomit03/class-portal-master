@@ -2,7 +2,7 @@
     <div class="container main-footer fs-14">
         <div class="row">
             <div class="col-12 col-md-4 col-lg-4 introduction footer-column">
-                <img src="{{ asset('uploads/logo/logofooter.png') }}" class="footer-site-logo" alt="Classportal">
+                <img src="{{ asset('./uploads/logo/logofooter.png') }}" class="footer-site-logo" alt="Classportal">
                 <p class="slogan mg-b-10">
                     ClassPortal platform provides learners and instructors with a variety of educational technologies following the social constructive learning.
                 </p>

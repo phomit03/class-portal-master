@@ -24,9 +24,9 @@ class HomeController extends Controller
     {
         $recent_activity = array();
 
-        $courses = Auth::user()->courses()->get();
+        $classes = Auth::user()->classes()->get();
 
-        foreach ($courses as $course) {
+        foreach ($classes as $course) {
             if ($course->assignments()->get()) {
                 foreach ($course->assignments()->orderBy('created_at', 'desc')->get() as $assignment) {
                     $course = $assignment->course()->get();
@@ -38,7 +38,7 @@ class HomeController extends Controller
             }
         }
 
-        foreach ($courses as $course) {
+        foreach ($classes as $course) {
             if ($course->annoucements()->get()) {
                 foreach ($course->annoucements()->orderBy('created_at', 'desc')->get() as $annoucement) {
                     $course = $annoucement->course()->get();

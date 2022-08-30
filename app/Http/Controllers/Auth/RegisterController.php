@@ -52,7 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users|regex:/^[A-Za-z]+\d*@njit\.edu$/',
+            'email' => 'required|email|max:255|unique:users|regex:/^[A-Za-z]+\d*@fpt\.edu\.vn$/',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -65,17 +65,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $role = 'teacher';
-        $regex_student = '/^[a-z]{2,4}+\d{1,4}@njit\.edu$/';
+        $role = 'student';
+        $regex_student = '/^[a-z]{2,4}+\d{1,4}@fpt\.edu\.vn$/';
 
         /**
          * Assign the appropriate role based on the regular expression
-         * for a students' email
-         *
-         */
-        if (preg_match($regex_student, $data['email'])) {
-            $role = 'student';
-        }
+         * for a students' email */
+
+        /*
+         * if (preg_match($regex_student, $data['email'])) {
+            $role = 'teacher';
+        } */
 
         return User::create([
             'first_name' => $data['first_name'],

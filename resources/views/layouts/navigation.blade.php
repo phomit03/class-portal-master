@@ -22,7 +22,7 @@
                         <!-- Display appropriate links based on the user's role -->
                         @if (Auth::user()->role == 'teacher')
                             <li class="menu-item home">
-                                <a class="" href="{{ url('/course/create') }}" title="Add Class">
+                                <a class="" href="{{ url('/class/create') }}" title="Add Class">
                                     <i class="las la-home"></i>  Add Class
                                 </a>
                             </li>

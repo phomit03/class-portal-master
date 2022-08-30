@@ -2,29 +2,29 @@
 
 @section('title', 'Add Class')
 
-@section('page-header', 'Add New Course')
+@section('page-header', 'Add New class')
 
 @section('content')
     <!--side-content-->
     <div class="col-xs-12 col-md-4">
         <div class="well">
-            <h4>Courses</h4>
-            @if (count(Auth::user()->courses()->get()) > 0)
+            <h4>classes</h4>
+            @if (count(Auth::user()->classes()->get()) > 0)
                 <div class="list-group">
-                    @foreach (Auth::user()->courses()->get() as $course)
-                        <a href="{{ url('course/' . $course->id) }}" class="list-group-item list-group-item-info">
+                    @foreach (Auth::user()->classes()->get() as $class)
+                        <a href="{{ url('class/' . $class->id) }}" class="list-group-item list-group-item-info">
                             <h4 class="list-group-item-heading">
-                                {{ $course->subject }} {{ $course->course }}-{{ $course->section }}
+                                {{ $class->name }} {{ $class->room }}-{{ $class->section }}
                             </h4>
-                            <p class="list-group-item-text">{{ $course->title }}</p>
+                            <p class="list-group-item-text">{{ $class->title }}</p>
                         </a>
                     @endforeach
                 </div>
             @else
                 @if (Auth::user()->role == 'teacher')
-                    <div class="alert alert-danger" role="alert">You do not have any active courses.</div>
+                    <div class="alert alert-danger" role="alert">You do not have any active classes.</div>
                 @else
-                    <div class="alert alert-danger" role="alert">You are no taking any courses.</div>
+                    <div class="alert alert-danger" role="alert">You are no taking any classes.</div>
                 @endif
             @endif
         </div>
@@ -53,7 +53,7 @@
                     <h4>Assignments</h4>
                     <div class="list-group">
                         @foreach ($assignments as $assignment)
-                            <a href="{{ url('/course/' . $course_id . '/assignment/' . $assignment->id) }}" class="list-group-item list-group-item-info">
+                            <a href="{{ url('/class/' . $class_id . '/assignment/' . $assignment->id) }}" class="list-group-item list-group-item-info">
                                 <h4 class="list-group-item-heading">{{ $assignment->title }}</h4>
                                 <p class="list-group-item-text">Due Date: <u>{{ date('F jS Y \a\t h:i A', strtotime($assignment->due_date)) }}</u></p>
                             </a>
@@ -78,18 +78,18 @@
 
             <div class="panel-body">
                 <div class="col-xs-12 col-md-12">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/course') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/class') }}">
                         {{ csrf_field() }}
 
                         <!-- Subject -->
-                        <div class="form-group{{ $errors->has('subject') ? ' has-error': '' }}">
+                        <div class="form-group{{ $errors->has('name') ? ' has-error': '' }}">
                             <label class="col-md-4 control-label">Subject</label>
                             <div class="col-md-5">
-                                <input type="text" class="form-control" name="subject" value="{{ old('subject') }}"
+                                <input type="text" class="form-control" name="name" value="{{ old('name') }}"
                                        placeholder="CS">
 
-                                @if ($errors->has('subject'))
-                                    <span class="help-block"><strong>{{ $errors->first('subject') }}</strong></span>
+                                @if ($errors->has('name'))
+                                    <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
                                 @endif
                             </div>
                         </div>
@@ -108,14 +108,14 @@
                         </div>
 
                         <!-- Course -->
-                        <div class="form-group{{ $errors->has('course') ? ' has-error': '' }}">
+                        <div class="form-group{{ $errors->has('room') ? ' has-error': '' }}">
                             <label class="col-md-4 control-label">Course Number</label>
                             <div class="col-md-5">
-                                <input type="text" class="form-control" name="course" value="{{ old('course') }}"
+                                <input type="text" class="form-control" name="course" value="{{ old('room') }}"
                                        placeholder="100">
 
-                                @if ($errors->has('course'))
-                                    <span class="help-block"><strong>{{ $errors->first('course') }}</strong></span>
+                                @if ($errors->has('room'))
+                                    <span class="help-block"><strong>{{ $errors->first('room') }}</strong></span>
                                 @endif
                             </div>
                         </div>

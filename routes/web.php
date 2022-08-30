@@ -38,30 +38,30 @@ Route::get('/profile', [UserController::class, 'show']);
 Route::post('/profile/update', [UserController::class, 'update']);
 Route::get('/profile/{user_id}', [UserController::class, 'show']);
 
-Route::get('/course/{class_id}/students', [UserController::class, 'showAll']);
+Route::get('/class/{class_id}/students', [UserController::class, 'showAll']);
 
 // Class Routes
-Route::get('/course/create', [ClassController::class, 'create']);
-Route::get('/course/{id}', [ClassController::class, 'show']);
+Route::get('/class/create', [ClassController::class, 'create']);
+Route::get('/class/{id}', [ClassController::class, 'show']);
 
-Route::post('/course', [ClassController::class, 'store']);
-Route::put('/course/{id}', [ClassController::class, 'update']);
-Route::delete('/course/{id}', [ClassController::class, 'destroy']);
+Route::post('/class', [ClassController::class, 'store']);
+Route::put('/class/{id}', [ClassController::class, 'update']);
+Route::delete('/class/{id}', [ClassController::class, 'destroy']);
 
-Route::post('/course/{class_id}/student', [ClassController::class, 'addStudents']);
+Route::post('/class/{class_id}/student', [ClassController::class, 'addStudents']);
 
 // Assignment Routes
-Route::post('/course/{id}/assignment', [AssignmentController::class, 'store']);
-Route::get('/course/{class_id}/assignment/{assignment_id}', [AssignmentController::class, 'show']);
-Route::delete('/course/{class_id}/assignment/{assignment_id}', [AssignmentController::class, 'destroy']);
-Route::put('/course/{class_id}/assignment/{assignment_id}', [AssignmentController::class, 'update']);
+Route::post('/class/{id}/assignment', [AssignmentController::class, 'store']);
+Route::get('/class/{class_id}/assignment/{assignment_id}', [AssignmentController::class, 'show']);
+Route::delete('/class/{class_id}/assignment/{assignment_id}', [AssignmentController::class, 'destroy']);
+Route::put('/class/{class_id}/assignment/{assignment_id}', [AssignmentController::class, 'update']);
 
 // Annoucement Routes
 /*
- * Route::post('/course/{course_id}/annoucement', [AnnoucementController::class, 'store']);
-Route::get('/course/{course_id}/annoucement/{annoucement_id}', [AnnoucementController::class, 'show']);
-Route::delete('/course/{course_id}/annoucement/{annoucement_id}', [AnnoucementController::class, 'destroy']);
-Route::put('/course/{course_id}/annoucement/{annoucement_id}', [AnnoucementController::class, 'update']);
+ * Route::post('/class/{course_id}/annoucement', [AnnoucementController::class, 'store']);
+Route::get('/class/{course_id}/annoucement/{annoucement_id}', [AnnoucementController::class, 'show']);
+Route::delete('/class/{course_id}/annoucement/{annoucement_id}', [AnnoucementController::class, 'destroy']);
+Route::put('/class/{course_id}/annoucement/{annoucement_id}', [AnnoucementController::class, 'update']);
 */
 
 

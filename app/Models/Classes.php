@@ -13,7 +13,7 @@ class Classes extends Model
     protected $keyType ='integer';
 
     protected $fillable = [
-        'name', 'title', 'room', 'section', 'user_id'
+        'name', 'title', 'room', 'section'
     ];
 
     /**

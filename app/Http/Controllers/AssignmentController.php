@@ -33,7 +33,7 @@ class AssignmentController extends Controller
       $assignment->course_id = $id;
 
       if ($assignment->save()) {
-        return redirect('/course/' . $id)->with('status', 'Assignment added successfully!');
+        return redirect('/class/' . $id)->with('status', 'Assignment added successfully!');
       }
     }
 
@@ -74,7 +74,7 @@ class AssignmentController extends Controller
       $assignment->description = $request->input('description');
 
       if ($assignment->save()) {
-        return redirect('/course/' . $course_id . '/assignment/' . $assignment_id)->with('status', 'Assignment updated successfully!');
+        return redirect('/class/' . $course_id . '/assignment/' . $assignment_id)->with('status', 'Assignment updated successfully!');
       }
     }
 
@@ -84,7 +84,7 @@ class AssignmentController extends Controller
     public function destroy($course_id, $assignment_id)
     {
         if (Assignment::destroy($assignment_id)) {
-            return redirect('/course/' . $course_id)->with('status', 'Assignment deleted successfully!');
+            return redirect('/class/' . $course_id)->with('status', 'Assignment deleted successfully!');
         }
     }
 }

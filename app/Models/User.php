@@ -64,7 +64,7 @@ class User extends Authenticatable
      *
      * @return Response
      */
-    public function courses()
+    public function classes()
     {
         return $this->belongsToMany('App\Models\Classes');
     }
