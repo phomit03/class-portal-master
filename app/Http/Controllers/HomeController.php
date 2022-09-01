@@ -25,26 +25,25 @@ class HomeController extends Controller
         $recent_activity = array();
 
         $classes = Auth::user()->classes()->get();
-
-        foreach ($classes as $course) {
-            if ($course->assignments()->get()) {
-                foreach ($course->assignments()->orderBy('created_at', 'desc')->get() as $assignment) {
-                    $course = $assignment->course()->get();
-                    $course_info = $course[0]->name . ' ' . $course[0]->room . '-' . $course[0]->section;
+        foreach ($classes as $class) {
+            if ($class->assignments()->get()) {
+                foreach ($class->assignments()->orderBy('created_at', 'desc')->get() as $assignment) {
+                    $class = $assignment->class()->get();
+                    $class_info = $class[0]->name . ' ' . $class[0]->room . '-' . $class[0]->section;
                     $assignment->type = 'assignment';
-                    $assignment->course_info = $course_info;
+                    $assignment->class_info = $class_info;
                     array_push($recent_activity, $assignment);
                 }
             }
         }
 
-        foreach ($classes as $course) {
-            if ($course->annoucements()->get()) {
-                foreach ($course->annoucements()->orderBy('created_at', 'desc')->get() as $annoucement) {
-                    $course = $annoucement->course()->get();
-                    $course_info = $course[0]->name . ' ' . $course[0]->room . '-' . $course[0]->section;
+        foreach ($classes as $class) {
+            if ($class->annoucements()->get()) {
+                foreach ($class->annoucements()->orderBy('created_at', 'desc')->get() as $annoucement) {
+                    $class = $annoucement->class()->get();
+                    $class_info = $class[0]->name . ' ' . $class[0]->room . '-' . $class[0]->section;
                     $annoucement->type = 'annoucement';
-                    $annoucement->course_info = $course_info;
+                    $annoucement->class_info = $class_info;
                     array_push($recent_activity, $annoucement);
                 }
             }
