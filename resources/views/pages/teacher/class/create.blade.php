@@ -72,7 +72,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    Create New Course
+                    Create New Class
                 </h4>
             </div>
 
@@ -81,9 +81,9 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/class') }}">
                         {{ csrf_field() }}
 
-                        <!-- Subject -->
+                        <!-- Name -->
                         <div class="form-group{{ $errors->has('name') ? ' has-error': '' }}">
-                            <label class="col-md-4 control-label">Subject</label>
+                            <label class="col-md-4 control-label">Name</label>
                             <div class="col-md-5">
                                 <input type="text" class="form-control" name="name" value="{{ old('name') }}"
                                        placeholder="CS">
@@ -107,11 +107,11 @@
                             </div>
                         </div>
 
-                        <!-- Course -->
+                        <!-- Class -->
                         <div class="form-group{{ $errors->has('room') ? ' has-error': '' }}">
-                            <label class="col-md-4 control-label">Course Number</label>
+                            <label class="col-md-4 control-label">Class Number</label>
                             <div class="col-md-5">
-                                <input type="text" class="form-control" name="course" value="{{ old('room') }}"
+                                <input type="text" class="form-control" name="room" value="{{ old('room') }}"
                                        placeholder="100">
 
                                 @if ($errors->has('room'))

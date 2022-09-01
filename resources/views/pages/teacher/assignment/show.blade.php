@@ -14,7 +14,7 @@
                     @foreach (Auth::user()->classes()->get() as $class)
                         <a href="{{ url('class/' . $class->id) }}" class="list-group-item list-group-item-info">
                             <h4 class="list-group-item-heading">
-                                {{ $class->subject }} {{ $class->class }}-{{ $class->section }}
+                                {{ $class->name }} {{ $class->room }}-{{ $class->section }}
                             </h4>
                             <p class="list-group-item-text">{{ $class->title }}</p>
                         </a>

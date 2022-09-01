@@ -30,7 +30,7 @@ class AssignmentController extends Controller
       $assignment->title = $request->input('title');
       $assignment->due_date = $due_date;
       $assignment->description = $request->input('description');
-      $assignment->course_id = $id;
+      $assignment->class_id = $id;
 
       if ($assignment->save()) {
         return redirect('/class/' . $id)->with('status', 'Assignment added successfully!');
@@ -40,23 +40,23 @@ class AssignmentController extends Controller
     /**
      * Show details about a particular assignment
      */
-    public function show($course_id, $assignment_id)
+    public function show($class_id, $assignment_id)
     {
       $assignment = Assignment::find($assignment_id);
-      $course = Classes::find($course_id);
-      $course_name = $course->subject . ' ' . $course->course . '-' . $course->section;
-      $course_instructor = $course->user_id;
+      $class = Classes::find($class_id);
+      $class_name = $class->name . ' ' . $class->room . '-' . $class->section;
+      $class_instructor = $class->user_id;
 
       return view('pages.teacher.assignment.show', [
-        'course_name' => $course_name,
-        'course_id' => $course_id,
+        'class_name' => $class_name,
+        'class_id' => $class_id,
         'assignment' => $assignment,
-        'course_instructor' => $course_instructor,
+        'class_instructor' => $class_instructor,
         'due_date_formatted' => str_replace(' ', 'T', $assignment->due_date)
       ]);
     }
 
-    public function update(Request $request, $course_id, $assignment_id)
+    public function update(Request $request, $class_id, $assignment_id)
     {
       $this->validate($request, [
         'title' => 'required',
@@ -74,17 +74,17 @@ class AssignmentController extends Controller
       $assignment->description = $request->input('description');
 
       if ($assignment->save()) {
-        return redirect('/class/' . $course_id . '/assignment/' . $assignment_id)->with('status', 'Assignment updated successfully!');
+        return redirect('/class/' . $class_id . '/assignment/' . $assignment_id)->with('status', 'Assignment updated successfully!');
       }
     }
 
     /**
      * Delete a particular assignment
      */
-    public function destroy($course_id, $assignment_id)
+    public function destroy($class_id, $assignment_id)
     {
         if (Assignment::destroy($assignment_id)) {
-            return redirect('/class/' . $course_id)->with('status', 'Assignment deleted successfully!');
+            return redirect('/class/' . $class_id)->with('status', 'Assignment deleted successfully!');
         }
     }
 }

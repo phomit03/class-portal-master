@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Course Details')
+@section('title', 'Class Details')
 
-@section('page-header', 'Course Details')
+@section('page-header', 'Class Details')
 
 @section('content')
     <!--side-content-->
@@ -76,7 +76,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                {{ $course->subject }} {{ $course->course }}-{{ $course->section }} - {{ $course->title }} -
+                                {{ $class->name }} {{ $class->room }}-{{ $class->section }} - {{ $class->title }} -
                                 <a href="{{ url('/profile/' . $instructor->id) }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</a>
                             </h4>
                         </div>
@@ -95,7 +95,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                {{ $class->name }} {{ $class->room }}-{{ $course->section }} - {{ $course->title }} -
+                                {{ $class->name }} {{ $class->room }}-{{ $class->section }} - {{ $class->title }} -
                                 <a href="{{ url('/profile/' . $instructor->id) }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</a>
                             </h4>
                         </div>
@@ -105,12 +105,12 @@
         </div>
 
         @if (Auth::user()->id == $instructor->id)
-            <!-- Edit Course Information -->
+            <!-- Edit Class Information -->
             <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingOne">
                     <h4 class="panel-title">
                         <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true"
-                           aria-controls="collapseOne">Edit Course Information or Add Students</a>
+                           aria-controls="collapseOne">Edit Class Information or Add Students</a>
                     </h4>
                 </div>
 
@@ -123,9 +123,9 @@
                                 {{ method_field('PUT') }}
                                 <!-- Subject -->
                                 <div class="form-group{{ $errors->has('name') ? ' has-error': '' }}">
-                                    <label class="col-md-3 control-label">Subject</label>
+                                    <label class="col-md-3 control-label">Name</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="subject"
+                                        <input type="text" class="form-control" name="name"
                                                value="{{ old('name') ? old('name') : $class->name }}">
 
                                         @if ($errors->has('name'))
@@ -139,7 +139,7 @@
                                     <label class="col-md-3 control-label">Title</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="title"
-                                               value="{{ old('title') ? old('title') : $course->title }}">
+                                               value="{{ old('title') ? old('title') : $class->title }}">
 
                                         @if ($errors->has('title'))
                                             <span class="help-block"><strong>{{ $errors->first('title') }}</strong></span>
@@ -147,11 +147,11 @@
                                     </div>
                                 </div>
 
-                                <!-- Course -->
+                                <!-- Class -->
                                 <div class="form-group{{ $errors->has('room') ? ' has-error': '' }}">
-                                    <label class="col-md-3 control-label">Course</label>
+                                    <label class="col-md-3 control-label">Class</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="course"
+                                        <input type="text" class="form-control" name="room$cour"
                                                value="{{ old('room') ? old('room') : $class->room }}">
 
                                         @if ($errors->has('room'))
@@ -165,7 +165,7 @@
                                     <label class="col-md-3 control-label">Section</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="section"
-                                               value="{{ old('section') ? old('section') : $course->section }}">
+                                               value="{{ old('section') ? old('section') : $class->section }}">
 
                                         @if ($errors->has('section'))
                                             <span class="help-block"><strong>{{ $errors->first('section') }}</strong></span>

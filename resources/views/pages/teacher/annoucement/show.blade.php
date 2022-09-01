@@ -14,7 +14,7 @@
                     @foreach (Auth::user()->classes()->get() as $class)
                         <a href="{{ url('class/' . $class->id) }}" class="list-group-item list-group-item-info">
                             <h4 class="list-group-item-heading">
-                                {{ $class->subject }} {{ $class->class }}-{{ $class->section }}
+                                {{ $class->name }} {{ $class->room }}-{{ $class->section }}
                             </h4>
                             <p class="list-group-item-text">{{ $class->title }}</p>
                         </a>
@@ -80,7 +80,7 @@
                 <div class="col-xs-12 col-md-10 col-md-offset-1">
                     <div class="well">
                         <h3>{{ $annoucement->title }}</h3>
-                        <h4>{{ $class->subject }} {{ $class->class }}-{{ $class->section }}</h4>
+                        <h4>{{ $class->name }} {{ $class->room }}-{{ $class->section }}</h4>
                         <br/>
                         <p> {{ $annoucement->message }}</p>
                     </div>
