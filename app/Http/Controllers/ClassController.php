@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\classes_user;
 use Illuminate\Http\Request;
 
 
@@ -19,40 +20,41 @@ class ClassController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show details about a particular class - GET
-     */
+//    public function show($id)
+//    {
+//        //in ra list subjects ở trong class do
+//    }
+
+    //chuyển phần này qua subjects
+
+
+     //* Show details about a particular subjects - GET
+
     public function show($id)
     {
         $class = Classes::find($id);
         $instructor = $class->users()->where('role', 'teacher')->first();
 
         $assignments = $class->assignments()->orderBy('due_date', 'desc')->get();
-        $annoucements = $class->annoucements()->orderBy('created_at', 'desc')->get();
 
         // Grab all the recent activity, which includes
         // assignments and annoucement, then sort date that
         // it was created
         $recent_activity = array();
-
-        if (count($assignments) > 0 || count($assignments) > 0) {
-            foreach ($annoucements as $annoucement) {
-                $annoucement->type = 'annoucement';
-                array_push($recent_activity, $annoucement);
-            }
-
-            foreach ($assignments as $assignment) {
-                $assignment->type = 'assignment';
-                array_push($recent_activity, $assignment);
-            }
-
-            usort($recent_activity, function($a, $b) {
-                if ($a->created_at == $b->created_at) {
-                    return 0;
-                }
-                return ($a->created_at > $b->created_at) ? -1 : 1;
-            });
-        }
+//
+//        if (count($assignments) > 0 || count($assignments) > 0) {
+//            foreach ($assignments as $assignment) {
+//                $assignment->type = 'assignment';
+//                array_push($recent_activity, $assignment);
+//            }
+//
+//            usort($recent_activity, function($a, $b) {
+//                if ($a->created_at == $b->created_at) {
+//                    return 0;
+//                }
+//                return ($a->created_at > $b->created_at) ? -1 : 1;
+//            });
+     //   }
 
         return view('pages.teacher.class.show', [
             'class' => $class,
@@ -77,24 +79,26 @@ class ClassController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|alpha|max:5', // CS
-            'title' => 'required|string|max:255',   // Roadmap To Computing
-            'room' => 'required|numeric|digits_between:2,4', // 100
-            'section' => 'required|numeric|digits_between:2,4' // 001
+            'name' => 'required|string|max:255',
+            'title' => 'string|max:255|nullable',   // Roadmap To Computing
+            'room' => 'numeric|digits_between:2,5|nullable', // 01
+            'section' => 'numeric|digits_between:2,5|nullable' // 01
         ]);
 
         $user_id = Auth::user()->id;
 
         $class = new Classes;
+        $classes = new classes_user();
         $class->name = $request->input('name');
         $class->title = $request->input('title');
         $class->room = $request->input('room');
         $class->section = $request->input('section');
 
         if ($class->save()) {
-            // Insert information into the pivot table for users and courses
-//            $class->users()->attach($user_id);
-
+            // Insert information into the pivot table for users and classes
+            $classes->user_id =$user_id;
+            $classes->class_id=$class->id;
+            $classes->save();
             return redirect('/class/create')->with('status', 'Class added successfully!');
         }
     }
@@ -105,16 +109,16 @@ class ClassController extends Controller
     public function update(Classes $class, Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:5',
-            'title' => 'required|string|max:255',
-            'room' => 'required|numeric|digits_between:2,4',
-            'section' => 'required|numeric|digits_between:2,4'
+            'name' => 'required|string|max:255',
+            'title' => 'string|max:255|nullable',   // Roadmap To Computing
+            'room' => 'numeric|digits_between:2,5|nullable', // 01
+            'section' => 'numeric|digits_between:2,5|nullable' // 01
         ]);
 
         $class = Classes::find($id);
-        $class->subject = $request->input('name');
+        $class->name = $request->input('name');
         $class->title = $request->input('title');
-        $class->course = $request->input('room');
+        $class->room = $request->input('room');
         $class->section = $request->input('section');
 
         if ($class->save()) {

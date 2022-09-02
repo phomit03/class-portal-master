@@ -24,28 +24,41 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     /**
-     * Capitalize the first character of the first name attribute
+     * Capitalizes the first character of the string uppercase
      * to keep consistency
      *
-     * @param string $value
+     * @param String $value
+     * @return string
+     */
+    public function setAvatarAttribute($value)
+    {
+        $this->attributes['avatar'] = ucwords($value);
+    }
+
+    /**
+     * Capitalizes the first character of the string uppercase
+     * to keep consistency
+     *
+     * @param String $value
      * @return string
      */
     public function setFirstNameAttribute($value)
     {
-        $this->attributes['first_name'] = ucfirst($value);
+        $this->attributes['first_name'] = ucwords($value);
     }
 
     /**
-     * Capitalize the first character of the last name attribute
+     * Capitalizes the first character of the string uppercase
      * to keep consistency
      *
-     * @param string $value
+     * @param String $value
      * @return string
      */
     public function setLastNameAttribute($value)
     {
-        $this->attributes['last_name'] = ucfirst($value);
+        $this->attributes['last_name'] = ucwords($value);
     }
 
     /**
@@ -59,14 +72,16 @@ class User extends Authenticatable
         $this->attributes['email'] = strtolower($value);
     }
 
+
+
     /**
-     * Many-to-many relationship between users and courses
+     * Many-to-many relationship between users and classes
      *
      * @return Response
      */
     public function classes()
     {
-        return $this->belongsToMany('App\Models\Classes');
+        return $this->belongsToMany(Classes::class, "classes_users","user_id","class_id");
     }
 
     /**
@@ -76,6 +91,30 @@ class User extends Authenticatable
      */
     public function messages()
     {
-        return $this->belongsToMany('App\Models\Message');
+        return $this->belongsToMany(Message::class, "messages_user","user_id","message_id");
     }
+
+    /**
+     * Result that has many to this class
+     *
+     * @return Response
+     */
+
+    public function results()
+    {
+        return $this->hasMany('App\Models\Result');
+    }
+
+    /**
+     * Issue that has many to this class
+     *
+     * @return Response
+     */
+
+    public function issues()
+    {
+        return $this->hasMany('App\Models\Issue');
+    }
+
+
 }

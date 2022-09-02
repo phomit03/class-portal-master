@@ -41,11 +41,13 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
+            'avatar'=>'string|max:255',
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255'
         ]);
 
         $user = Auth::user();
+        $user->avatar = $request->input('avatar');
         $user->first_name = $request->input('first_name');
         $user->last_name = $request->input('last_name');
 

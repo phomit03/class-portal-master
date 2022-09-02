@@ -14,9 +14,7 @@
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-    <link rel="icon" type="image/x-icon" href="https://faistatic.edunext.vn/assets/images/edn-favicon.png" />
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('uploads/logo/favicon.png') }}" />
-
+    <link rel="icon" type="image/x-icon" href="{{ asset('uploads/logo/favicon.png') }}" />
     <title>ClassPortal - @yield('title')</title>
 
     <!-- CSS -->
@@ -65,14 +63,14 @@
         <section id="top-head" class="landing-section gray-bg">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-md-6  mg-b-20">
+                    <div class="col-12 col-md-7  mg-b-20">
                         <div class="wrap-content">
                             <h1 class="title-section fs-32 mg-b-10">Social Constructive Learning</h1>
                             <p class="fs-18 mg-b-15">Construct knowledge and personalize the learning way to empower learners&#x27; full potential.</p>
                             <a href="/home" class="signup-link btn  btn-main-v4 btn-large-v4 ttf-none" title="Join now">Join now</a>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6  mg-b-20">
+                    <div class="col-12 col-md-5  mg-b-20">
                         <img src="https://faistatic.edunext.vn/assets/parts/landing-2/imgs/landing-pc-1.png" alt="Banner EduNext" />
                     </div>
                 </div>
@@ -82,10 +80,10 @@
             <div class="container">
                 <h2 class="title-section fs-32 mg-b-30 align-center">Personalization In Learning</h2>
                 <div class="row">
-                    <div class="col-12 col-md-6  mg-b-20">
+                    <div class="col-12 col-md-7  mg-b-20">
                         <img src="https://faistatic.edunext.vn/assets/parts/landing-2/imgs/landing-pc-2.png" alt=">Personalization In Learning" />
                     </div>
-                    <div class="col-12 col-md-6  mg-b-20">
+                    <div class="col-12 col-md-5  mg-b-20">
                         <div class="wrap-content">
                             <p>Self-paced learning means you are in control of what you learn and when you learn it.</p>
                             <p>Construct knowledge and discuss in groups with high quality mentors and friends.</p>
@@ -99,7 +97,7 @@
             <div class="container">
                 <h2 class="title-section fs-32 mg-b-30 align-center">Comprehensive Constructive Platform</h2>
                 <div class="row">
-                    <div class="col-12 col-md-6  mg-b-20">
+                    <div class="col-12 col-md-7  mg-b-20">
                         <ul class="wrap-content none-list pd-0">
                             <li class="mg-b-30 hidden">
                                 <img src="https://faistatic.edunext.vn/assets/parts/landing-2/imgs/landing-pc-3-1.png" alt="Learn at the individual pace" />
@@ -124,7 +122,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-12 col-md-6 wrap-pic mg-b-20">
+                    <div class="col-12 col-md-5 wrap-pic mg-b-20">
                         <img src="https://faistatic.edunext.vn/assets/parts/landing-2/imgs/landing-pc-3.png" alt="Persionalized Learning" />
                     </div>
                 </div>

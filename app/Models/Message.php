@@ -47,6 +47,6 @@ class Message extends Model
      */
     public function users()
     {
-      return $this->belongsToMany('App\Models\User');
+      return $this->belongsToMany(User::class, "messages_user","message_id","user_id");
     }
 }
