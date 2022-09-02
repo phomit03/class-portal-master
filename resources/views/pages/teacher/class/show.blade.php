@@ -8,7 +8,7 @@
     <!--side-content-->
     <div class="col-xs-12 col-md-4">
         <div class="well">
-            <h4>classes</h4>
+            <h4>Classes</h4>
             @if (count(Auth::user()->classes()->get()) > 0)
                 <div class="list-group">
                     @foreach (Auth::user()->classes()->get() as $class)
@@ -53,7 +53,7 @@
                     <h4>Assignments</h4>
                     <div class="list-group">
                         @foreach ($assignments as $assignment)
-                            <a href="{{ url('/class/' . $class_id . '/assignment/' . $assignment->id) }}" class="list-group-item list-group-item-info">
+                            <a href="{{ url('/subject/' . $subject_id . '/assignment/' . $assignment->id) }}" class="list-group-item list-group-item-info">
                                 <h4 class="list-group-item-heading">{{ $assignment->title }}</h4>
                                 <p class="list-group-item-text">Due Date: <u>{{ date('F jS Y \a\t h:i A', strtotime($assignment->due_date)) }}</u></p>
                             </a>
@@ -76,7 +76,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                {{ $class->name }} {{ $class->room }}-{{ $class->section }} - {{ $class->title }} -
+                                {{ $class->name }} - {{ $class->section }} - {{ $class->title }} - {{ $class->room }}
                                 <a href="{{ url('/profile/' . $instructor->id) }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</a>
                             </h4>
                         </div>
@@ -95,7 +95,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                {{ $class->name }} {{ $class->room }}-{{ $class->section }} - {{ $class->title }} -
+                                {{ $class->name }} - {{ $class->section }} - {{ $class->title }} - {{ $class->room }}
                                 <a href="{{ url('/profile/' . $instructor->id) }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</a>
                             </h4>
                         </div>
@@ -104,6 +104,7 @@
             @endif
         </div>
 
+        {{--Edit + Add--}}
         @if (Auth::user()->id == $instructor->id)
             <!-- Edit Class Information -->
             <div class="panel panel-default">
@@ -121,7 +122,7 @@
                                   action="{{ url('class/' . $class->id) }}">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
-                                <!-- Subject -->
+                                <!-- Name -->
                                 <div class="form-group{{ $errors->has('name') ? ' has-error': '' }}">
                                     <label class="col-md-3 control-label">Name</label>
                                     <div class="col-md-6">
@@ -147,11 +148,11 @@
                                     </div>
                                 </div>
 
-                                <!-- Class -->
+                                <!-- Room -->
                                 <div class="form-group{{ $errors->has('room') ? ' has-error': '' }}">
                                     <label class="col-md-3 control-label">Class</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="room$cour"
+                                        <input type="text" class="form-control" name="room"
                                                value="{{ old('room') ? old('room') : $class->room }}">
 
                                         @if ($errors->has('room'))
@@ -196,11 +197,14 @@
         @endif
 
 
+        {{--chuyển phần này qua subjects--}}
+
+        {{--Lich su assignment da tao--}}
         @if (isset($recent_activity) && count($recent_activity) > 0)
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        Recent Activity
+                        Recent Assignment Activity
                     </h4>
                 </div>
 
@@ -208,21 +212,14 @@
                     <div class="col-xs-12 col-md-10 col-md-offset-1">
                         <div class="list-group">
                             @foreach ($recent_activity as $activity)
-                                @if ($activity->type == 'annoucement')
-                                    <a href="{{ url('/class/' . $activity->class_id . '/annoucement/' . $activity->id) }}"
-                                       class="list-group-item list-group-item-info">
-                                        <h4 class="list-group-item-heading">{{ $activity->title }}</h4>
-                                        <p class="list-group-item-text">{{ $activity->message }}</p>
-                                    </a>
-                                @else
-                                    <a href="{{ url('/class/' . $activity->class_id . '/assignment/' . $activity->id) }}"
-                                       class="list-group-item list-group-item-warning">
-                                        <h4 class="list-group-item-heading">{{ $activity->title }}</h4>
-                                        <p class="list-group-item-text">{{ $activity->description }}</p>
-                                        <p class="list-group-item-text"><b>Due Date:</b>
-                                            <u>{{ date('F jS Y \a\t h:i A', strtotime($activity->due_date)) }}</u></p>
-                                    </a>
-                                @endif
+                                <a href="{{ url('/class/' . $activity->class_id . '/assignment/' . $activity->id) }}"
+                                   class="list-group-item list-group-item-warning">
+                                    <h4 class="list-group-item-heading">{{ $activity->title }}</h4>
+                                    <p class="list-group-item-text">{{ $activity->description }}</p>
+                                    <p class="list-group-item-text"><b>Due Date:</b>
+                                        <u>{{ date('F jS Y \a\t h:i A', strtotime($activity->due_date)) }}</u>
+                                    </p>
+                                </a>
                             @endforeach
                         </div>
                     </div>
@@ -230,12 +227,13 @@
             </div>
         @endif
 
+        {{-- add asignment theo class--}}
         @if (Auth::user()->role == 'teacher' && Auth::user()->id == $instructor->id)
             <!-- Add Quizzes, Assignments, and Annoucements -->
             <div class="panel panel-default">
                 <div class="panel-heading" role="tab">
                     <h4 class="panel-title">
-                        Add Assignments & Annoucements
+                        Add Assignments {{--& Annoucements--}}
                     </h4>
                 </div>
 
@@ -247,7 +245,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a href="#" id="assignment">Assignment</a></li>
-                            <li><a href="#" id="annoucement">Annoucement</a></li>
+                            {{--<li><a href="#" id="annoucement">Annoucement</a></li>--}}
                         </ul>
                     </div>
 
@@ -257,6 +255,7 @@
                             <form class="form-horizontal" role="form" method="POST" action="{{ url('/class/' . $class_id . '/assignment') }}">
                                 {{ csrf_field() }}
 
+
                                 <!-- Title -->
                                 <div class="form-group{{ $errors->has('title') ? ' has-error': ''}}">
                                     <label class="col-md-3 control-label">Title</label>
@@ -265,18 +264,6 @@
 
                                         @if ($errors->has('title'))
                                             <span class="help-block"><strong>{{ $errors->first('title') }}</strong></span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <!-- Due Date -->
-                                <div class="form-group{{ $errors->has('due_date') ? ' has-error': ''}}">
-                                    <label class="col-md-3 control-label">Due Date</label>
-                                    <div class="col-md-5">
-                                        <input type="datetime-local" class="form-control" name="due_date" value="{{ old('due_date') }}">
-
-                                        @if ($errors->has('due_date'))
-                                            <span class="help-block"><strong>{{ $errors->first('due_date') }}</strong></span>
                                         @endif
                                     </div>
                                 </div>
@@ -293,6 +280,30 @@
                                     </div>
                                 </div>
 
+                                <!--Source-->
+                                <div class="form-group{{ $errors->has('source') ? ' has-error': ''}}">
+                                    <label class="col-md-3 control-label">Source</label>
+                                    <div class="col-md-5">
+                                        <input type="file" class="form-control" name="source" value="{{ old('source') }}" rows="4">
+
+                                        @if ($errors->has('source'))
+                                            <span class="help-block"><strong>{{ $errors->first('source') }}</strong></span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <!-- Due Date -->
+                                <div class="form-group{{ $errors->has('due_date') ? ' has-error': ''}}">
+                                    <label class="col-md-3 control-label">Due Date</label>
+                                    <div class="col-md-5">
+                                        <input type="datetime-local" class="form-control" name="due_date" value="{{ old('due_date') }}">
+
+                                        @if ($errors->has('due_date'))
+                                            <span class="help-block"><strong>{{ $errors->first('due_date') }}</strong></span>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <!-- Submit Button -->
                                 <div class="form-group">
                                     <div class="col-md-4 col-md-offset-6">
@@ -303,7 +314,7 @@
                             </form>
                         </div>
 
-                        <div id="annoucement-form" class="forms">
+                        {{--<div id="annoucement-form" class="forms">
                             <form class="form-horizontal" role="form" method="POST" action="{{ url('/class/' . $class_id . '/annoucement') }}">
                                 {{ csrf_field() }}
 
@@ -339,7 +350,7 @@
                                 </div>
 
                             </form>
-                        </div>
+                        </div>--}}
                     </div>
                     <!--end form-->
                 </div>
@@ -348,6 +359,7 @@
     </div>
 @endsection
 
+{{--chuyển phần này qua subjects--}}
 @push('scripts')
     <script src=" {{ asset('js/toggle-assignment-type.js') }}"></script>
 @endpush

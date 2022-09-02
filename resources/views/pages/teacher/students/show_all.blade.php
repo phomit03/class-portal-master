@@ -8,13 +8,13 @@
     <!--side-content-->
     <div class="col-xs-12 col-md-4">
         <div class="well">
-            <h4>classes</h4>
+            <h4>Classes</h4>
             @if (count(Auth::user()->classes()->get()) > 0)
                 <div class="list-group">
                     @foreach (Auth::user()->classes()->get() as $class)
                         <a href="{{ url('class/' . $class->id) }}" class="list-group-item list-group-item-info">
                             <h4 class="list-group-item-heading">
-                                {{ $class->subject }} {{ $class->class }}-{{ $class->section }}
+                                {{ $class->name }} {{ $class->room }}-{{ $class->section }}
                             </h4>
                             <p class="list-group-item-text">{{ $class->title }}</p>
                         </a>
@@ -53,7 +53,7 @@
                     <h4>Assignments</h4>
                     <div class="list-group">
                         @foreach ($assignments as $assignment)
-                            <a href="{{ url('/class/' . $class_id . '/assignment/' . $assignment->id) }}" class="list-group-item list-group-item-info">
+                            <a href="{{ url('/subject/' . $subject_id . '/assignment/' . $assignment->id) }}" class="list-group-item list-group-item-info">
                                 <h4 class="list-group-item-heading">{{ $assignment->title }}</h4>
                                 <p class="list-group-item-text">Due Date: <u>{{ date('F jS Y \a\t h:i A', strtotime($assignment->due_date)) }}</u></p>
                             </a>

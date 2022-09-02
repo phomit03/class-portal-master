@@ -8,7 +8,7 @@
     <!--side-content-->
     <div class="col-xs-12 col-md-4">
         <div class="well">
-            <h4>classes</h4>
+            <h4>Classes</h4>
             @if (count(Auth::user()->classes()->get()) > 0)
                 <div class="list-group">
                     @foreach (Auth::user()->classes()->get() as $class)
@@ -53,7 +53,7 @@
                     <h4>Assignments</h4>
                     <div class="list-group">
                         @foreach ($assignments as $assignment)
-                            <a href="{{ url('/class/' . $class_id . '/assignment/' . $assignment->id) }}" class="list-group-item list-group-item-info">
+                            <a href="{{ url('/subject/' . $subject_id . '/assignment/' . $assignment->id) }}" class="list-group-item list-group-item-info">
                                 <h4 class="list-group-item-heading">{{ $assignment->title }}</h4>
                                 <p class="list-group-item-text">Due Date: <u>{{ date('F jS Y \a\t h:i A', strtotime($assignment->due_date)) }}</u></p>
                             </a>
@@ -79,16 +79,20 @@
             <div class="panel-body">
                 <div class="col-xs-12 col-md-10 col-md-offset-1">
                     <div class="well">
-                        <h3>{{ $assignment->title }}</h3>
-                        <h4>{{ $class_name }}</h4>
+                        <h4>{{ 'Name Subject: ' . $subject_name }}</h4>
+                        <hr>
+
+                        <h3>{{ 'Title: ' . $assignment->title }}</h3>
                         <p><strong>Due Date:</strong>
-                            <u>{{ date('F jS Y \a\t h:i A', strtotime($assignment->due_date)) }}</u></p>
+                            <u>{{ date('F jS Y \a\t h:i A', strtotime($assignment->due_date)) }}</u>
+                        </p>
                         <br/>
-                        <p>{{ $assignment->description }}</p>
+                        <p>{{ 'Description: ' . $assignment->description }}</p>
+                        <p>{{ 'Source: ' . $assignment->source }}</p>
                     </div>
-                    @if (Auth::user()->id == $class_instructor)
+                    @if (Auth::user()->id == $subject_instructor)
                         <form role="form" method="post"
-                              action="{{ url('/class/' . $class_id . '/assignment/' . $assignment->id) }}">
+                              action="{{ url('/subject/' . $subject_id . '/assignment/' . $assignment->id) }}">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
 
@@ -100,7 +104,7 @@
             </div>
         </div>
 
-        @if (Auth::user()->id == $class_instructor)
+        @if (Auth::user()->id == $subject_instructor)
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 class="panel-title">
@@ -111,7 +115,7 @@
                 <div class="panel-body">
                     <div class="col-xs-12 col-md-10 col-md-offset-1">
                         <form class="form-horizontal" role="form" method="POST"
-                              action="{{ url('/class/' . $class_id . '/assignment/' . $assignment->id) }}">
+                              action="{{ url('/subject/' . $subject_id . '/assignment/' . $assignment->id) }}">
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
 

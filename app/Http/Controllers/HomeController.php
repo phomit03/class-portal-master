@@ -29,22 +29,10 @@ class HomeController extends Controller
             if ($class->assignments()->get()) {
                 foreach ($class->assignments()->orderBy('created_at', 'desc')->get() as $assignment) {
                     $class = $assignment->class()->get();
-                    $class_info = $class[0]->name . ' ' . $class[0]->room . '-' . $class[0]->section;
+                    $class_info = $class[0]->name . ' ' . $class[0]->tittle . ' - ' . $class[0]->room . ' - ' . $class[0]->section;
                     $assignment->type = 'assignment';
                     $assignment->class_info = $class_info;
                     array_push($recent_activity, $assignment);
-                }
-            }
-        }
-
-        foreach ($classes as $class) {
-            if ($class->annoucements()->get()) {
-                foreach ($class->annoucements()->orderBy('created_at', 'desc')->get() as $annoucement) {
-                    $class = $annoucement->class()->get();
-                    $class_info = $class[0]->name . ' ' . $class[0]->room . '-' . $class[0]->section;
-                    $annoucement->type = 'annoucement';
-                    $annoucement->class_info = $class_info;
-                    array_push($recent_activity, $annoucement);
                 }
             }
         }
