@@ -53,14 +53,27 @@ class Assignment extends Model
       $this->attributes['description'] = ucfirst($value);
     }
 
+
+
     /**
      * Set the relationship between the Assignment
-     * model and the Course model
+     * model and the Subject model
      *
      * @return Response
      */
-    public function course()
+    public function subjects()
     {
-        return $this->belongsTo('App\Models\Classes');
+        return $this->belongsTo('App\Models\Subject');
+    }
+
+    /**
+     * Result that has many to this class
+     *
+     * @return Response
+     */
+
+    public function results()
+    {
+        return $this->hasMany('App\Models\Result');
     }
 }

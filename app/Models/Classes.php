@@ -17,14 +17,15 @@ class Classes extends Model
     ];
 
     /**
-     * Capitalizes the subject to keep consistency
+     * Capitalizes the first character of the string uppercase
+     * to keep consistency
      *
      * @param String $value
      * @return string
      */
-    public function setSubjectAttribute($value)
+    public function setNameAttribute($value)
     {
-        $this->attributes['subject'] = strtoupper($value);
+        $this->attributes['name'] = ucwords($value);
     }
 
     /**
@@ -40,8 +41,33 @@ class Classes extends Model
     }
 
     /**
-     * Users that belong to this class
+     * Capitalizes the first character of the string uppercase
+     * to keep consistency
      *
+     * @param String $value
+     * @return string
+     */
+    public function setRoomAttribute($value)
+    {
+        $this->attributes['room'] = ucwords($value);
+    }
+
+    /**
+     * Capitalizes the first character of the string uppercase
+     * to keep consistency
+     *
+     * @param String $value
+     * @return string
+     */
+    public function setSectionAttribute($value)
+    {
+        $this->attributes['section'] = ucwords($value);
+    }
+
+    /**
+     * Many-to-many relationship between classes and users
+     *
+     * @return Response
      */
     public function users()
     {
@@ -49,21 +75,14 @@ class Classes extends Model
     }
 
     /**
-     * Assignments that belong to this class
-     *
-     */
-    public function assignments()
-    {
-        return $this->hasMany('App\Models\Assignment');
-    }
-
-    /**
-     * Annoucements that belong to this class
+     * Subject that has many to this class
      *
      * @return Response
      */
-    public function annoucements()
+
+    public function subjects()
     {
-        return $this->hasMany('App\Models\Annoucement');
+        return $this->belongsToMany('App\Models\Subject');
     }
+
 }

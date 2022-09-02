@@ -21,6 +21,7 @@
         <div class="panel-body">
             <div class="col-xs-12 col-md-12">
                 @if ($user->id == Auth::user()->id)
+                    <p><strong>Avatar:</strong> {{ $user->avatar }}</p>
                     <p><strong>First name:</strong> {{ $user->first_name }}</p>
                     <p><strong>Last name:</strong> {{ $user->last_name }}</p>
                     <p><strong>Role:</strong> {{ $user->role }}</p>
@@ -29,7 +30,6 @@
                 @else
                     <h3>Contact Form</h3>
                     <hr>
-
                     <!-- Private Message -->
                     <form class="form-horizontal" role="form" method="POST"
                           action="{{ url('/user/' . $user->id . '/message') }}">
@@ -81,6 +81,18 @@
                     <!-- Edit Form -->
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/profile/update') }}">
                         {{ csrf_field() }}
+                        <!-- Avatar -->
+                        <div class="form-group{{ $errors->has('avatar') ? ' has-error': ''}}">
+                            <label class="col-md-3 col-md-offset-1 control-label">Avatar</label>
+                            <div class="col-md-6">
+                                <input type="file" class="form-control" name="avatar"
+                                       value="{{ $errors->has('avatar') ? old('avatar') : $user->avatar }}">
+
+                                @if ($errors->has('avatar'))
+                                    <span class="help-block"><strong>{{ $errors->first('avatar') }}</strong></span>
+                                @endif
+                            </div>
+                        </div>
 
                         <!-- First Name -->
                         <div class="form-group{{ $errors->has('first_name') ? ' has-error': ''}}">

@@ -7,7 +7,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\AssignmentController;
-use App\Http\Controllers\AnnoucementController;
 
 
 /*
@@ -51,10 +50,10 @@ Route::delete('/class/{id}', [ClassController::class, 'destroy']);
 Route::post('/class/{class_id}/student', [ClassController::class, 'addStudents']);
 
 // Assignment Routes
-Route::post('/class/{id}/assignment', [AssignmentController::class, 'store']);
-Route::get('/class/{class_id}/assignment/{assignment_id}', [AssignmentController::class, 'show']);
-Route::delete('/class/{class_id}/assignment/{assignment_id}', [AssignmentController::class, 'destroy']);
-Route::put('/class/{class_id}/assignment/{assignment_id}', [AssignmentController::class, 'update']);
+Route::post('/subject/{id}/assignment', [AssignmentController::class, 'store']);
+Route::get('/subject/{subject_id}/assignment/{assignment_id}', [AssignmentController::class, 'show']);
+Route::delete('/subject/{subject_id}/assignment/{assignment_id}', [AssignmentController::class, 'destroy']);
+Route::put('/subject/{subject_id}/assignment/{assignment_id}', [AssignmentController::class, 'update']);
 
 // Annoucement Routes
 /*

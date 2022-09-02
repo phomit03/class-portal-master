@@ -16,7 +16,6 @@
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
 
     <script type="text/javascript" src="{{ asset('js/defer.js') }}"></script>
@@ -50,7 +49,9 @@
     </main>
     <!-- end main content -->
 
+    <!--footer-->
     @include('layouts.footer')
+    <!--end-footer-->
 
     <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

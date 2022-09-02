@@ -8,7 +8,7 @@
     <!--side-content-->
     <div class="col-xs-12 col-md-4">
         <div class="well">
-            <h4>classes</h4>
+            <h4>Classes</h4>
             @if (count(Auth::user()->classes()->get()) > 0)
                 <div class="list-group">
                     @foreach (Auth::user()->classes()->get() as $class)
@@ -53,7 +53,7 @@
                     <h4>Assignments</h4>
                     <div class="list-group">
                         @foreach ($assignments as $assignment)
-                            <a href="{{ url('/class/' . $class_id . '/assignment/' . $assignment->id) }}" class="list-group-item list-group-item-info">
+                            <a href="{{ url('/subject/' . $subject_id . '/assignment/' . $assignment->id) }}" class="list-group-item list-group-item-info">
                                 <h4 class="list-group-item-heading">{{ $assignment->title }}</h4>
                                 <p class="list-group-item-text">Due Date: <u>{{ date('F jS Y \a\t h:i A', strtotime($assignment->due_date)) }}</u></p>
                             </a>
@@ -86,7 +86,7 @@
                             <label class="col-md-4 control-label">Name</label>
                             <div class="col-md-5">
                                 <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                       placeholder="CS">
+                                       placeholder="T2108M">
 
                                 @if ($errors->has('name'))
                                     <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
@@ -107,12 +107,12 @@
                             </div>
                         </div>
 
-                        <!-- Class -->
+                        <!-- Room -->
                         <div class="form-group{{ $errors->has('room') ? ' has-error': '' }}">
-                            <label class="col-md-4 control-label">Class Number</label>
+                            <label class="col-md-4 control-label">Room</label>
                             <div class="col-md-5">
                                 <input type="text" class="form-control" name="room" value="{{ old('room') }}"
-                                       placeholder="100">
+                                       placeholder="01">
 
                                 @if ($errors->has('room'))
                                     <span class="help-block"><strong>{{ $errors->first('room') }}</strong></span>
