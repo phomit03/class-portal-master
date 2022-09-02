@@ -8,7 +8,7 @@
     <!--xử lí lỗi link dẫn 1 nguồn.-->
     <base href="/"/>
 
-    <link rel="icon" type="image/x-icon" href="https://faistatic.edunext.vn/assets/images/edn-favicon.png" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('uploads/logo/favicon.png') }}"/>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('uploads/logo/favicon.png') }}" />
 
     <title>ClassPortal - @yield('title')</title>
