@@ -80,7 +80,7 @@ class SubjectController extends Controller
             'description' => 'string|max:255|nullable',   // Roadmap To Computing
         ]);
 
-        $user_id = Auth::user()->id;
+        $class_id = Auth::user()->id;
 
         $subject = new Subject;
         $class_subject = new classes_subjects();
@@ -89,9 +89,9 @@ class SubjectController extends Controller
 
         if ($subject->save()) {
             // Insert information into the pivot table for users and classes
-            $class_subject->user_id =$user_id;
-            $class_subject->class_id=$subject->id;
-            $class_subject->save();
+//            $class_subject->classes_id =$class_id->id;
+//            $class_subject->subject_id=$subject->id;
+//            $class_subject->save();
             return redirect('/class/create')->with('status', 'Subject added successfully!');
         }
     }
@@ -99,20 +99,16 @@ class SubjectController extends Controller
     /**
      * Update the class' information [PUT]
      */
-    public function update(Classes $class, Request $request, $id)
+    public function update(Subject $subject, Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required|string|max:255',
-            'title' => 'string|max:255|nullable',   // Roadmap To Computing
-            'room' => 'numeric|digits_between:2,5|nullable', // 01
-            'section' => 'numeric|digits_between:2,5|nullable' // 01
+            'description' => 'string|max:255|nullable',   // Roadmap To Computing
         ]);
 
-        $class = Classes::find($id);
+        $class = Subject::find($id);
         $class->name = $request->input('name');
-        $class->title = $request->input('title');
-        $class->room = $request->input('room');
-        $class->section = $request->input('section');
+        $class->description = $request->input('description');
 
         if ($class->save()) {
             return redirect('/class/' . $id)->with('status', 'Subject updated successfully!');

@@ -11,12 +11,11 @@
             <h4>Classes</h4>
             @if (count(Auth::user()->classes()->get()) > 0)
                 <div class="list-group">
-                    @foreach (Auth::user()->classes()->get() as $class)
-                        <a href="{{ url('class/' . $class->id) }}" class="list-group-item list-group-item-info">
+                    @foreach (Auth::user()->classes()->get() as $subject)
+                        <a href="{{ url('subject/' . $subject->id) }}" class="list-group-item list-group-item-info">
                             <h4 class="list-group-item-heading">
-                                {{ $class->name }} {{ $class->room }}-{{ $class->section }}
+                                {{ $subject->name }}
                             </h4>
-                            <p class="list-group-item-text">{{ $class->title }}</p>
                         </a>
                     @endforeach
                 </div>
@@ -76,14 +75,14 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                {{ $class->name }} - {{ $class->section }} - {{ $class->title }} - {{ $class->room }}
+                                {{ $subject->name }} - {{ $subject->description }}
                                 <a href="{{ url('/profile/' . $instructor->id) }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</a>
                             </h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <form role="form" method="POST" action="{{ url('/class/' . $class->id) }}">
+                    <form role="form" method="POST" action="{{ url('/subject/' . $subject->id) }}">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
 
@@ -95,7 +94,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                {{ $class->name }} - {{ $class->section }} - {{ $class->title }} - {{ $class->room }}
+                                {{ $subject->name }} - {{ $subject->description }}
                                 <a href="{{ url('/profile/' . $instructor->id) }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</a>
                             </h4>
                         </div>
@@ -119,7 +118,7 @@
                     <div class="panel-body">
                         <div class="col-xs-12 col-md-12">
                             <form class="form-horizontal" role="form" method="POST"
-                                  action="{{ url('class/' . $class->id) }}">
+                                  action="{{ url('subject/' . $subject->id) }}">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
                                 <!-- Name -->
@@ -127,7 +126,7 @@
                                     <label class="col-md-3 control-label">Name</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="name"
-                                               value="{{ old('name') ? old('name') : $class->name }}">
+                                               value="{{ old('name') ? old('name') : $subject->name }}">
 
                                         @if ($errors->has('name'))
                                             <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
@@ -135,41 +134,15 @@
                                     </div>
                                 </div>
 
-                                <!-- Title -->
-                                <div class="form-group{{ $errors->has('title') ? ' has-error': '' }}">
+                                <!-- Description -->
+                                <div class="form-group{{ $errors->has('description') ? ' has-error': '' }}">
                                     <label class="col-md-3 control-label">Title</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="title"
-                                               value="{{ old('title') ? old('title') : $class->title }}">
+                                        <input type="text" class="form-control" name="description"
+                                               value="{{ old('description') ? old('description') : $subject->description }}">
 
-                                        @if ($errors->has('title'))
-                                            <span class="help-block"><strong>{{ $errors->first('title') }}</strong></span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <!-- Room -->
-                                <div class="form-group{{ $errors->has('room') ? ' has-error': '' }}">
-                                    <label class="col-md-3 control-label">Class</label>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" name="room"
-                                               value="{{ old('room') ? old('room') : $class->room }}">
-
-                                        @if ($errors->has('room'))
-                                            <span class="help-block"><strong>{{ $errors->first('room') }}</strong></span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <!-- Section -->
-                                <div class="form-group{{ $errors->has('section') ? ' has-error': '' }}">
-                                    <label class="col-md-3 control-label">Section</label>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" name="section"
-                                               value="{{ old('section') ? old('section') : $class->section }}">
-
-                                        @if ($errors->has('section'))
-                                            <span class="help-block"><strong>{{ $errors->first('section') }}</strong></span>
+                                        @if ($errors->has('description'))
+                                            <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
                                         @endif
                                     </div>
                                 </div>

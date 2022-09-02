@@ -70,3 +70,11 @@ Route::get('/message/{message_id}', [MessageController::class, 'show']);
 Route::delete('/message/{message_id}', [MessageController::class, 'destroy']);
 Route::get('/message/', [MessageController::class, 'showAll']);
 
+//
+Route::get('/subject/create', [\App\Http\Controllers\SubjectController::class, 'create']);
+Route::get('/subject/{id}', [\App\Http\Controllers\SubjectController::class, 'show']);
+Route::post('/subject', [\App\Http\Controllers\SubjectController::class, 'store']);
+Route::put('/subject/{id}', [\App\Http\Controllers\SubjectController::class, 'update']);
+Route::delete('/subject/{id}', [\App\Http\Controllers\SubjectController::class, 'destroy']);
+
+

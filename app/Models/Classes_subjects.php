@@ -12,6 +12,6 @@ class classes_subjects extends Model
     protected $keyType ='integer';
 
     protected $fillable = [
-        'user_id', 'class_id'
+        'class_id','subject_id',
     ];
 }

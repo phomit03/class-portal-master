@@ -11,12 +11,11 @@
             <h4>Classes</h4>
             @if (count(Auth::user()->classes()->get()) > 0)
                 <div class="list-group">
-                    @foreach (Auth::user()->classes()->get() as $class)
-                        <a href="{{ url('class/' . $class->id) }}" class="list-group-item list-group-item-info">
+                    @foreach (Auth::user()->classes()->get() as $subject)
+                        <a href="{{ url('subject/' . $subject->id) }}" class="list-group-item list-group-item-info">
                             <h4 class="list-group-item-heading">
-                                {{ $class->name }} {{ $class->room }}-{{ $class->section }}
+                                {{ $subject->name }}
                             </h4>
-                            <p class="list-group-item-text">{{ $class->title }}</p>
                         </a>
                     @endforeach
                 </div>
@@ -78,7 +77,7 @@
 
             <div class="panel-body">
                 <div class="col-xs-12 col-md-12">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/class') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/subject') }}">
                         {{ csrf_field() }}
 
                         <!-- Name -->
@@ -95,40 +94,14 @@
                         </div>
 
                         <!-- Title -->
-                        <div class="form-group{{ $errors->has('title') ? ' has-error': '' }}">
-                            <label class="col-md-4 control-label">Title</label>
+                        <div class="form-group{{ $errors->has('description') ? ' has-error': '' }}">
+                            <label class="col-md-4 control-label">description</label>
                             <div class="col-md-5">
-                                <input type="text" class="form-control" name="title" value="{{ old('title') }}"
+                                <input type="text" class="form-control" name="description" value="{{ old('description') }}"
                                        placeholder="Roadmap To Computing">
 
-                                @if ($errors->has('title'))
-                                    <span class="help-block"><strong>{{ $errors->first('title') }}</strong></span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <!-- Room -->
-                        <div class="form-group{{ $errors->has('room') ? ' has-error': '' }}">
-                            <label class="col-md-4 control-label">Room</label>
-                            <div class="col-md-5">
-                                <input type="text" class="form-control" name="room" value="{{ old('room') }}"
-                                       placeholder="01">
-
-                                @if ($errors->has('room'))
-                                    <span class="help-block"><strong>{{ $errors->first('room') }}</strong></span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <!-- Section -->
-                        <div class="form-group{{ $errors->has('section') ? ' has-error': '' }}">
-                            <label class="col-md-4 control-label">Section</label>
-                            <div class="col-md-5">
-                                <input type="text" class="form-control" name="section" value="{{ old('section') }}"
-                                       placeholder="001">
-
-                                @if ($errors->has('section'))
-                                    <span class="help-block"><strong>{{ $errors->first('section') }}</strong></span>
+                                @if ($errors->has('description'))
+                                    <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
                                 @endif
                             </div>
                         </div>
