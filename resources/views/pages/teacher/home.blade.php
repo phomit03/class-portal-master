@@ -83,7 +83,7 @@
                             @foreach ($recent_activity as $activity)
                                 <a href="{{ url('/class/' . $activity->class_id . '/assignment/' . $activity->id) }}"
                                    class="list-group-item list-group-item-success">
-                                    <h4 class="list-group-item-heading">{{ $activity->course_info }}
+                                    <h4 class="list-group-item-heading">{{ $activity->class_info }}
                                         - {{ $activity->title }}</h4>
                                     <p class="list-group-item-text">
                                     <p>{{ date('F jS Y \a\t h:i A', strtotime($activity->created_at)) }}</p>

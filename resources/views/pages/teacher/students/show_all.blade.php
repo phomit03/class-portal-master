@@ -80,7 +80,7 @@
                 @if (isset($users) && count($users) > 0)
                     <div class="col-md-10 col-md-offset-3">
                         <form class="form-horizontal" role="form" method="POST"
-                              action="{{ url('/class/' . $course . '/student') }}">
+                              action="{{ url('/class/' . $class_id . '/student') }}">
                             {{ csrf_field() }}
 
                             <!-- Display all users -->

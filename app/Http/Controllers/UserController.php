@@ -63,7 +63,7 @@ class UserController extends Controller
     {
         return view('pages.teacher.students/show_all', [
             'users' => User::all(),
-            'class' => $class_id
+            'class_id' => $class_id
         ]);
     }
 }
