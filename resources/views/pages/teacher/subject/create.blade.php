@@ -85,7 +85,7 @@
                             <label class="col-md-4 control-label">Name</label>
                             <div class="col-md-5">
                                 <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                       placeholder="T2108M">
+                                       placeholder="HTML">
 
                                 @if ($errors->has('name'))
                                     <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
@@ -98,7 +98,7 @@
                             <label class="col-md-4 control-label">Description</label>
                             <div class="col-md-5">
                                 <input type="text" class="form-control" name="description" value="{{ old('description') }}"
-                                       placeholder="Roadmap To Computing">
+                                       placeholder="Easy">
 
                                 @if ($errors->has('description'))
                                     <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
