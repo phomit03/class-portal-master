@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\classes_subjects;
+use App\Models\Classes_Subject;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -67,7 +67,10 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        return view('pages.teacher.subject.create');
+        $subjects = Subject::all();
+        return view('pages.teacher.subject.create', [
+            'subjects'=>$subjects
+        ]);
     }
 
     /**
@@ -80,16 +83,16 @@ class SubjectController extends Controller
             'description' => 'string|max:255|nullable',   // Roadmap To Computing
         ]);
 
-        $class_id = Auth::user()->id;
+//        $class_id = Auth::user()->classes()->id;
 
         $subject = new Subject;
-        $class_subject = new classes_subjects();
+        $class_subject = new Classes_Subject();
         $subject->name = $request->input('name');
         $subject->description = $request->input('title');
 
         if ($subject->save()) {
             // Insert information into the pivot table for users and classes
-//            $class_subject->classes_id =$class_id->id;
+//            $class_subject->classes_id =$class_id;
 //            $class_subject->subject_id=$subject->id;
 //            $class_subject->save();
             return redirect('/class/create')->with('status', 'Subject added successfully!');
@@ -111,7 +114,7 @@ class SubjectController extends Controller
         $class->description = $request->input('description');
 
         if ($class->save()) {
-            return redirect('/class/' . $id)->with('status', 'Subject updated successfully!');
+            return redirect('/subject/' . $id)->with('status', 'Subject updated successfully!');
         }
     }
 

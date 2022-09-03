@@ -1,21 +1,13 @@
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>ClassPortal</title>
-
     <meta name="author" content="ClassPortal">
-    <meta name="description" content="Học kiến tạo xã hội">
-    <meta name="image" content="https://faistatic.edunext.vn/assets/images/edn-thumb.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-
     <link rel="icon" type="image/x-icon" href="{{ asset('uploads/logo/favicon.png') }}" />
-    <title>ClassPortal - @yield('title')</title>
+    <title>ClassPortal</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -71,7 +63,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-5  mg-b-20">
-                        <img src="https://faistatic.edunext.vn/assets/parts/landing-2/imgs/landing-pc-1.png" alt="Banner EduNext" />
+                        <img src="{{ asset('uploads/landing/landing-pc-1.png') }}" alt="Banner EduNext" />
                     </div>
                 </div>
             </div>
@@ -81,7 +73,7 @@
                 <h2 class="title-section fs-32 mg-b-30 align-center">Personalization In Learning</h2>
                 <div class="row">
                     <div class="col-12 col-md-7  mg-b-20">
-                        <img src="https://faistatic.edunext.vn/assets/parts/landing-2/imgs/landing-pc-2.png" alt=">Personalization In Learning" />
+                        <img src="{{ asset('uploads/landing/landing-pc-2.png') }}" alt=">Personalization In Learning" />
                     </div>
                     <div class="col-12 col-md-5  mg-b-20">
                         <div class="wrap-content">
@@ -100,21 +92,21 @@
                     <div class="col-12 col-md-7  mg-b-20">
                         <ul class="wrap-content none-list pd-0">
                             <li class="mg-b-30 hidden">
-                                <img src="https://faistatic.edunext.vn/assets/parts/landing-2/imgs/landing-pc-3-1.png" alt="Learn at the individual pace" />
+                                <img src="{{ asset('uploads/landing/landing-pc-3-1.png') }}" alt="Learn at the individual pace" />
                                 <div class="right-list-content pd-l-15">
                                     <h3 class="fs-20 mg-b-5">Learn at the individual pace</h3>
                                     <p class="mg-0">Personalized learning involves learners in deciding their learning process. Thus, learners can level up according to their strengths and weaknesses.</p>
                                 </div>
                             </li>
                             <li class="mg-b-30">
-                                <img src="https://faistatic.edunext.vn/assets/parts/landing-2/imgs/landing-pc-3-2.png" alt="Provide constructive teaching tools" />
+                                <img src="{{ asset('uploads/landing/landing-pc-3-2.png') }}" alt="Provide constructive teaching tools" />
                                 <div class="right-list-content pd-l-15">
                                     <h3 class="fs-20 mg-b-5">Provide constructive teaching tools</h3>
                                     <p class="mg-0">Using a variety of tools provided on the ClassPortal for constructive teaching and learning.</p>
                                 </div>
                             </li>
                             <li>
-                                <img src="https://faistatic.edunext.vn/assets/parts/landing-2/imgs/landing-pc-3-3.png" alt="Group discussion 24/7" />
+                                <img src="{{ asset('uploads/landing/landing-pc-3-3.png') }}" alt="Group discussion 24/7" />
                                 <div class="right-list-content pd-l-15">
                                     <h3 class="fs-20 mg-b-5">Group discussion 24/7</h3>
                                     <p class="mg-0">Discuss with friends and mentors anytime, anywhere.</p>
@@ -123,7 +115,7 @@
                         </ul>
                     </div>
                     <div class="col-12 col-md-5 wrap-pic mg-b-20">
-                        <img src="https://faistatic.edunext.vn/assets/parts/landing-2/imgs/landing-pc-3.png" alt="Persionalized Learning" />
+                        <img src="{{ asset('uploads/landing/landing-pc-3.png') }}" alt="Persionalized Learning" />
                     </div>
                 </div>
             </div>

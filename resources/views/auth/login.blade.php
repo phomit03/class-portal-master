@@ -38,27 +38,27 @@
         @csrf
 
         <div class="wrap-form-field">
-            <div class="form-group group-width-icon{{ $errors->has('password') ? ' has-error' : '' }}">
-                <i class='fa fa-user'></i>
+            <div class="form-group group-width-icon{{ $errors->has('email') ? ' has-error' : '' }}">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
                 <input class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="Email" autofocus>
-
+            </div>
+            <div style="color: red; margin: 8px auto">
                 @if ($errors->has('email'))
                     <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>
                 @endif
             </div>
-            <span class="text-danger field-validation-valid" data-valmsg-for="Username" data-valmsg-replace="true"></span>
         </div>
 
         <div class="wrap-form-field">
             <div class="form-group group-width-icon{{ $errors->has('password') ? ' has-error' : '' }}">
                 <i class='fa fa-lock'></i>
                 <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" autocomplete="off">
-
+            </div>
+            <div style="color: red; margin: 8px auto">
                 @if ($errors->has('password'))
                     <span class="help-block"><strong>{{ $errors->first('password') }}</strong></span>
                 @endif
             </div>
-            <span class="text-danger field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
         </div>
 
         <div class="wrap-form-field" style="margin: 25px auto">

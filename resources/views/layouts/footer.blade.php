@@ -12,8 +12,8 @@
                 <h3 class="site-footer-title fs-16 mg-b-16">Information</h3>
                 <ul class="footer-menu none-list fs-14">
                     <li><a href="/en/home" title="">Support</a></li>
-                    <li><a href="/en/about-us" title=""> About</a></li>
-                    <li><a href="/en/terms" title="">Terms of Use</a></li>
+                    <li><a href="/about-us" title=""> About</a></li>
+                    <li><a href="/terms" title="">Terms of Use</a></li>
                 </ul>
             </div>
             <div class="col-12 col-md-4 col-lg-5 footer-column">

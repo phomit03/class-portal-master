@@ -71,19 +71,19 @@
 
         <!-- Show class title and instructor's name -->
         <div class="row">
-            @if (Auth::user()->id == $instructor->id)
+            @if ($instructor->role == "teacher")
                 <div class="col-md-10">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                {{ $class->name }} - {{ $class->section }} - {{ $class->title }} - {{ $class->room }}
+                                {{ $class1->name }} - {{ $class1->section }} - {{ $class1->title }} - {{ $class1->room }}
                                 <a href="{{ url('/profile/' . $instructor->id) }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</a>
                             </h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <form role="form" method="POST" action="{{ url('/class/' . $class->id) }}">
+                    <form role="form" method="POST" action="{{ url('/class/' . $class1->id) }}">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
 
@@ -95,7 +95,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                {{ $class->name }} - {{ $class->section }} - {{ $class->title }} - {{ $class->room }}
+                                {{ $class1->name }} - {{ $class1->section }} - {{ $class1->title }} - {{ $class1->room }}
                                 <a href="{{ url('/profile/' . $instructor->id) }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</a>
                             </h4>
                         </div>
@@ -105,7 +105,7 @@
         </div>
 
         {{--Edit + Add--}}
-        @if (Auth::user()->id == $instructor->id)
+        @if ($instructor->role == "teacher")
             <!-- Edit Class Information -->
             <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingOne">
@@ -119,7 +119,7 @@
                     <div class="panel-body">
                         <div class="col-xs-12 col-md-12">
                             <form class="form-horizontal" role="form" method="POST"
-                                  action="{{ url('class/' . $class->id) }}">
+                                  action="{{ url('class/' . $class1->id) }}">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
                                 <!-- Name -->
@@ -127,7 +127,7 @@
                                     <label class="col-md-3 control-label">Name</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="name"
-                                               value="{{ old('name') ? old('name') : $class->name }}">
+                                               value="{{ old('name') ? old('name') : $class1->name }}">
 
                                         @if ($errors->has('name'))
                                             <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
@@ -140,7 +140,7 @@
                                     <label class="col-md-3 control-label">Title</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="title"
-                                               value="{{ old('title') ? old('title') : $class->title }}">
+                                               value="{{ old('title') ? old('title') : $class1->title }}">
 
                                         @if ($errors->has('title'))
                                             <span class="help-block"><strong>{{ $errors->first('title') }}</strong></span>
@@ -153,7 +153,7 @@
                                     <label class="col-md-3 control-label">Class</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="room"
-                                               value="{{ old('room') ? old('room') : $class->room }}">
+                                               value="{{ old('room') ? old('room') : $class1->room }}">
 
                                         @if ($errors->has('room'))
                                             <span class="help-block"><strong>{{ $errors->first('room') }}</strong></span>
@@ -166,7 +166,7 @@
                                     <label class="col-md-3 control-label">Section</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="section"
-                                               value="{{ old('section') ? old('section') : $class->section }}">
+                                               value="{{ old('section') ? old('section') : $class1->section }}">
 
                                         @if ($errors->has('section'))
                                             <span class="help-block"><strong>{{ $errors->first('section') }}</strong></span>
@@ -185,7 +185,7 @@
 
                             <hr>
                             <div class="col-xs-12 col-md-6 col-md-offset-3">
-                                <a href="{{ url('/class/' . $class->id . '/students') }}">
+                                <a href="{{ url('/class/' . $class1->id . '/students') }}">
                                     <button type="button" class="btn btn-success btn-block">Add Students</button>
                                 </a>
                             </div>
@@ -197,37 +197,127 @@
         @endif
 
 
-        {{--chuyển phần này qua subjects--}}
+{{--        --}}{{--chuyển phần này qua subjects--}}
 
-        {{--Lich su assignment da tao--}}
-        @if (isset($recent_activity) && count($recent_activity) > 0)
+{{--        --}}{{--Lich su assignment da tao--}}
+{{--        @if (isset($recent_activity) && count($recent_activity) > 0)--}}
+{{--            <div class="panel panel-default">--}}
+{{--                <div class="panel-heading">--}}
+{{--                    <h4 class="panel-title">--}}
+{{--                        Recent Assignment Activity--}}
+{{--                    </h4>--}}
+{{--                </div>--}}
+
+{{--                <div class="panel-body">--}}
+{{--                    <div class="col-xs-12 col-md-10 col-md-offset-1">--}}
+{{--                        <div class="list-group">--}}
+{{--                            @foreach ($recent_activity as $activity)--}}
+{{--                                <a href="{{ url('/class/' . $activity->class_id . '/assignment/' . $activity->id) }}"--}}
+{{--                                   class="list-group-item list-group-item-warning">--}}
+{{--                                    <h4 class="list-group-item-heading">{{ $activity->title }}</h4>--}}
+{{--                                    <p class="list-group-item-text">{{ $activity->description }}</p>--}}
+{{--                                    <p class="list-group-item-text"><b>Due Date:</b>--}}
+{{--                                        <u>{{ date('F jS Y \a\t h:i A', strtotime($activity->due_date)) }}</u>--}}
+{{--                                    </p>--}}
+{{--                                </a>--}}
+{{--                            @endforeach--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        @endif--}}
+
+        {{-- add subject theo class--}}
+        @if (Auth::user()->role == 'teacher' && Auth::user()->id == $instructor->id)
+            <!-- Add Quizzes, Assignments, and Annoucements -->
             <div class="panel panel-default">
-                <div class="panel-heading">
+                <div class="panel-heading" role="tab">
                     <h4 class="panel-title">
-                        Recent Assignment Activity
+                        Add Assignments {{--& Annoucements--}}
                     </h4>
                 </div>
 
                 <div class="panel-body">
-                    <div class="col-xs-12 col-md-10 col-md-offset-1">
-                        <div class="list-group">
-                            @foreach ($recent_activity as $activity)
-                                <a href="{{ url('/class/' . $activity->class_id . '/assignment/' . $activity->id) }}"
-                                   class="list-group-item list-group-item-warning">
-                                    <h4 class="list-group-item-heading">{{ $activity->title }}</h4>
-                                    <p class="list-group-item-text">{{ $activity->description }}</p>
-                                    <p class="list-group-item-text"><b>Due Date:</b>
-                                        <u>{{ date('F jS Y \a\t h:i A', strtotime($activity->due_date)) }}</u>
-                                    </p>
-                                </a>
-                            @endforeach
+                    <div class="btn-group col-md-offset-9">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            Select Type <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{url('/class/' . $class_id . '/subject')}}" id="avai_Subject">Add Subject Available</a></li>
+                            <li><a href="#" id="new_Subject">Add new Subject</a></li>
+                        </ul>
+                    </div>
+
+                    <!--form assignment-->
+                    <div id="forms">
+                        <div id="avai_subject" class="forms">
+                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/class/' . $class_id . '/subject') }}">
+                                {{ csrf_field() }}
+                                <div class="form-group">
+                                    <label>Subject <span style="color: red">*</span></label>
+                                    <select name="classID" class="custom-select" required>
+                                        <option value="">choose</option>
+                                        @foreach($subjects as $items)
+                                            <option @if(old('subject_id') == $items->subject_id) selected @endif value="{{$items->subject_id}}">
+                                                {{$items->name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <!-- Submit Button -->
+                                <div class="form-group">
+                                    <div class="col-md-4 col-md-offset-6">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <div id="annoucement-form" class="forms">
+                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/class/' . $class_id . '/annoucement') }}">
+                                {{ csrf_field() }}
+
+                                <!-- Title -->
+                                <div class="form-group{{ $errors->has('title') ? ' has-error': ''}}">
+                                    <label class="col-md-3 control-label">Title</label>
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="Important Annoucement">
+
+                                        @if ($errors->has('title'))
+                                            <span class="help-block"><strong>{{ $errors->first('title') }}</strong></span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <!-- Message -->
+                                <div class="form-group{{ $errors->has('message') ? ' has-error': ''}}">
+                                    <label class="col-md-3 control-label">Message</label>
+                                    <div class="col-md-5">
+                                        <textarea class="form-control" name="message" value="{{ old('message') }}" placeholder="Type in your message here..." rows="3"></textarea>
+
+                                        @if ($errors->has('message'))
+                                            <span class="help-block"><strong>{{ $errors->first('message') }}</strong></span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="form-group">
+                                    <div class="col-md-4 col-md-offset-6">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+
+                            </form>
                         </div>
                     </div>
+                    <!--end form-->
                 </div>
             </div>
         @endif
 
-        {{-- add asignment theo class--}}
         @if (Auth::user()->role == 'teacher' && Auth::user()->id == $instructor->id)
             <!-- Add Quizzes, Assignments, and Annoucements -->
             <div class="panel panel-default">

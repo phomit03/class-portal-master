@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\classes_user;
+use App\Models\Classes_User;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 
@@ -33,9 +34,11 @@ class ClassController extends Controller
     public function show($id)
     {
         $class = Classes::find($id);
-        $instructor = $class->users()->where('role', 'teacher')->first();
+   //     dd($class);
+        $instructor = Auth::user();
+        $subjects = Subject::all();
 
-        $assignments = $class->assignments()->orderBy('due_date', 'desc')->get();
+//        $assignments = $class->assignments()->orderBy('due_date', 'desc')->get();
 
         // Grab all the recent activity, which includes
         // assignments and annoucement, then sort date that
@@ -57,10 +60,11 @@ class ClassController extends Controller
      //   }
 
         return view('pages.teacher.class.show', [
-            'class' => $class,
+            'class1' => $class,
             'instructor' => $instructor,
             'class_id' => $id,
-            'assignments' => $assignments,
+            'subjects'=>$subjects,
+//            'assignments' => $assignments,
             'recent_activity' => $recent_activity
         ]);
     }
@@ -88,7 +92,7 @@ class ClassController extends Controller
         $user_id = Auth::user()->id;
 
         $class = new Classes;
-        $classes = new classes_user();
+        $classes = new Classes_User();
         $class->name = $request->input('name');
         $class->title = $request->input('title');
         $class->room = $request->input('room');
