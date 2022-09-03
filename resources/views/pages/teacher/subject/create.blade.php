@@ -71,7 +71,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    Create New Class
+                    Create New Subject
                 </h4>
             </div>
 
@@ -95,7 +95,7 @@
 
                         <!-- Title -->
                         <div class="form-group{{ $errors->has('description') ? ' has-error': '' }}">
-                            <label class="col-md-4 control-label">description</label>
+                            <label class="col-md-4 control-label">Description</label>
                             <div class="col-md-5">
                                 <input type="text" class="form-control" name="description" value="{{ old('description') }}"
                                        placeholder="Roadmap To Computing">

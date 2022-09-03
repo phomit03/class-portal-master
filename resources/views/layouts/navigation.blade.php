@@ -14,26 +14,26 @@
             <nav id="site-nav" class="site-nav">
                 <ul class="site-menu none-list heading-font">
                     @if (Auth::user())
-                        <li class="menu-item home active">
+                        <li class="menu-item home {{request()->segment(1) == 'home' ? 'active' : '' }}">
                             <a class="" href="{{ url('/home') }}" title="Home">
                                 <i class="las la-home"></i>  Home
                             </a>
                         </li>
                         <!-- Display appropriate links based on the user's role -->
                         @if (Auth::user()->role == 'teacher')
-                            <li class="menu-item home">
+                            <li class="menu-item home {{request()->segment(1) == 'class' ? 'active' : '' }}">
                                 <a class="" href="{{ url('/class/create') }}" title="Add Class">
                                     <i class="las la-home"></i>  Add Class
                                 </a>
                             </li>
                         @endif
-                        <li class="menu-item list-slots">
+                        <li class="menu-item list-slots {{request()->segment(1) == 'subject' ? 'active' : '' }}">
                             <a class="" href="{{url('/subject/create')}}" title="Upcoming slots">
                                 <i class="las la-book"></i> Subject
                             </a>
                         </li>
-                        <li class="menu-item list-assignments">
-                            <a class="" href="/en/session/listassignment" title="Assignments">
+                        <li class="menu-item list-assignments {{request()->segment(1) == 'list-assignment' ? 'active' : '' }}">
+                            <a class="" href="/list-assignment" title="Assignments">
                                 <i class="las la-book"></i> Assignments
                             </a>
                         </li>
@@ -57,7 +57,7 @@
                 <a class="" href="https://faistatic.edunext.vn/assets/attachments/Huong_dan_KTXH_tren_EduNext_Sp22_Sinh_Vien.pdf" target="_blank" title="User Guide">User Guide</a>
             </li>
 
-            <li class="user-chat">
+            <li class="user-chat {{request()->segment(1) == 'message' ? 'active' : '' }}">
                 <div class="chat-icon">
                     <a href="{{ url('/message') }}">
                         <span class="total-message"></span>
