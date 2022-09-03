@@ -9,12 +9,12 @@
     <div class="col-xs-12 col-md-4">
         <div class="well">
             <h4>Classes</h4>
-            @if (count(Auth::user()->classes()->get()) > 0)
+            @if (count($subject->id->get()) > 0)
                 <div class="list-group">
-                    @foreach (Auth::user()->classes()->get() as $subject)
+                    @foreach ($subject->id->get() as $subject_count)
                         <a href="{{ url('subject/' . $subject->id) }}" class="list-group-item list-group-item-info">
                             <h4 class="list-group-item-heading">
-                                {{ $subject->name }}
+                                {{ $subject_count->name }}
                             </h4>
                         </a>
                     @endforeach

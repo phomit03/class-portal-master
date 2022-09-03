@@ -28,8 +28,8 @@
                             </li>
                         @endif
                         <li class="menu-item list-slots">
-                            <a class="" href="/en/session" title="Upcoming slots">
-                                <i class="las la-book"></i> Class
+                            <a class="" href="{{url('/subject/create')}}" title="Upcoming slots">
+                                <i class="las la-book"></i> Subject
                             </a>
                         </li>
                         <li class="menu-item list-assignments">
