@@ -48,8 +48,16 @@ class HomeController extends Controller
             });
         }
 
-        return view('pages.teacher.home', [
-            'recent_activity' => $recent_activity
-        ]);
+        if (Auth::user()->role == 'teacher'){
+            return view('pages.teacher.home', [
+                'recent_activity' => $recent_activity
+            ]);
+        } else {
+            return view('pages.student.home', [
+
+            ]);
+        }
+
+
     }
 }

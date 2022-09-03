@@ -33,13 +33,15 @@
     @include('layouts.navigation')
 
     <!-- main content -->
-    <main id="site-main" class="site-main">
+    <main id="site-main" class="site-main" style="padding: 30px 60px 45px;">
         <div class="container wrap-list-classes">
-            <div class=" edn-tabs">
+            <div class="edn-tabs">
                 <div id="tab-home-page" class="group-head-tab-control">
-                    <div class="page-header" style="margin: 20px 0px 20px 0px;">
-                        <h2 class="text-right">@yield('page-header')</h2>
-                    </div>
+                    @if(Auth::user()->role == 'teacher')
+                        <div class="page-header" style="margin-bottom: 20px">
+                            <h2 class="text-right">@yield('page-header')</h2>
+                        </div>
+                    @endif
                     <div class="row">
                         @yield('content')
                     </div>

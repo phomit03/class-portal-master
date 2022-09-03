@@ -28,8 +28,8 @@
                             </li>
                         @endif
                         <li class="menu-item list-slots {{request()->segment(1) == 'subject' ? 'active' : '' }}">
-                            <a class="" href="{{url('/subject/create')}}" title="Upcoming slots">
-                                <i class="las la-book"></i> Subject
+                            <a class="" href="{{url('/subject/create')}}" title="Subjects">
+                                <i class="las la-book"></i> Subjects
                             </a>
                         </li>
                         <li class="menu-item list-assignments {{request()->segment(1) == 'list-assignment' ? 'active' : '' }}">

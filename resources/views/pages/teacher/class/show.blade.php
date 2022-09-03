@@ -43,7 +43,7 @@
                     @endforeach
                 </div>
             @else
-                <div class="alert alert-danger" role="alert=">Currently, you don't have any new messages.</div>
+                <div class="alert alert-danger">Currently, you don't have any new messages.</div>
             @endif
         </div>
 
