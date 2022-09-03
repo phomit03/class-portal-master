@@ -231,27 +231,29 @@
         @if (Auth::user()->role == 'teacher' && Auth::user()->id == $instructor->id)
             <!-- Add Quizzes, Assignments, and Annoucements -->
             <div class="panel panel-default">
-                <div class="panel-heading" role="tab">
+                <div class="panel-heading" role="tab" id="headingOne">
                     <h4 class="panel-title">
-                        Add Assignments {{--& Annoucements--}}
+                        <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true"
+                           aria-controls="collapseOne">Add Subject</a>
                     </h4>
                 </div>
 
-                <div class="panel-body">
+                <div  id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labellledby="headingOne">
                     <div class="btn-group col-md-offset-9">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                            Select Type <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{url('/class/' . $class_id . '/subject')}}" id="avai_Subject">Add Subject Available</a></li>
-                            <li><a href="#" id="new_Subject">Add new Subject</a></li>
-                        </ul>
+{{--                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"--}}
+{{--                                aria-haspopup="true" aria-expanded="false">--}}
+{{--                            Select Type <span class="caret"></span>--}}
+{{--                        </button>--}}
+                        <select id="subject" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <option value="">Select Option</option>
+                            <option value="avai_Subject">Add Subject Available </option>
+                            <option value="new_Subject">Add new Subject </option>
+                        </select>
                     </div>
 
-                    <!--form assignment-->
+                    <!--form Subject-->
                     <div id="forms">
-                        <div id="avai_subject" class="forms">
+                        <div id="avai_subject" class="note" style="display: none">
                             <form class="form-horizontal" role="form" method="POST" action="{{ url('/class/' . $class_id . '/subject') }}">
                                 {{ csrf_field() }}
                                 <div class="form-group">
@@ -275,30 +277,32 @@
                             </form>
                         </div>
 
-                        <div id="annoucement-form" class="forms">
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/class/' . $class_id . '/annoucement') }}">
+                        <div id="new_subject" class="note" style="display: none">
+                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/subject') }}">
                                 {{ csrf_field() }}
 
-                                <!-- Title -->
-                                <div class="form-group{{ $errors->has('title') ? ' has-error': ''}}">
-                                    <label class="col-md-3 control-label">Title</label>
+                              <!--Name-->
+                                <div class="form-group{{ $errors->has('name') ? ' has-error': '' }}">
+                                    <label class="col-md-4 control-label">Name</label>
                                     <div class="col-md-5">
-                                        <input type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="Important Annoucement">
+                                        <input type="text" class="form-control" name="name" value="{{ old('name') }}"
+                                               placeholder="HTML">
 
-                                        @if ($errors->has('title'))
-                                            <span class="help-block"><strong>{{ $errors->first('title') }}</strong></span>
+                                        @if ($errors->has('name'))
+                                            <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
                                         @endif
                                     </div>
                                 </div>
 
-                                <!-- Message -->
-                                <div class="form-group{{ $errors->has('message') ? ' has-error': ''}}">
-                                    <label class="col-md-3 control-label">Message</label>
+                                <!-- Title -->
+                                <div class="form-group{{ $errors->has('description') ? ' has-error': '' }}">
+                                    <label class="col-md-4 control-label">description</label>
                                     <div class="col-md-5">
-                                        <textarea class="form-control" name="message" value="{{ old('message') }}" placeholder="Type in your message here..." rows="3"></textarea>
+                                        <input type="text" class="form-control" name="description" value="{{ old('description') }}"
+                                               placeholder="Easy">
 
-                                        @if ($errors->has('message'))
-                                            <span class="help-block"><strong>{{ $errors->first('message') }}</strong></span>
+                                        @if ($errors->has('description'))
+                                            <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
                                         @endif
                                     </div>
                                 </div>
@@ -317,6 +321,48 @@
                 </div>
             </div>
         @endif
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    Subject
+                </h4>
+            </div>
+
+            <div class="panel-collapse collapse" role="tabpanel" aria-labellledby="headingOne">
+                    {{--                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"--}}
+                    {{--                                aria-haspopup="true" aria-expanded="false">--}}
+                    {{--                            Select Type <span class="caret"></span>--}}
+                    {{--                        </button>--}}
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                            <tr>
+                                <th>Class Name</th>
+                                <th>Subject Name</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+{{--                            @foreach($students as $item)--}}
+                                <tr>
+                                    <td>abc</td>
+                                    <td>dff</td>
+                                    <td>dsdfg</td>
+{{--                                    <td><a href="{{url('/admin/student-edit',['id'=>$item->studentID])}}"><button type="button" class="btn btn-info">Edit</button></a></td>--}}
+{{--                                    <td>--}}
+{{--                                        <form action="{{url("/admin/student-delete",['student'=>$item->studentID])}}" method="post">--}}
+{{--                                            @csrf--}}
+{{--                                            @method("delete")--}}
+{{--                                            <button type="submit" onclick="return confirm('delete Student {{$item->studentName}}?')" class="btn btn-outline-danger">Delete</button>--}}
+{{--                                        </form>--}}
+{{--                                    </td>--}}
+                                </tr>
+{{--                            @endforeach--}}
+                            </tbody>
+                        </table>
+        </div>
+        </div>
+        <!--End Subject-->
 
         @if (Auth::user()->role == 'teacher' && Auth::user()->id == $instructor->id)
             <!-- Add Quizzes, Assignments, and Annoucements -->
@@ -451,5 +497,23 @@
 
 {{--chuyển phần này qua subjects--}}
 @push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('.note').hide();
+            $('#subject').change(function () {
+                $('.note').hide();
+                var val = $(this).val();
+                $('#avai_subject').hide();
+                $('#new_subject').hide();
+                if (val == 'avai_Subject') {
+                    $('#avai_subject').show();
+                }
+                else if (val == 'new_Subject') {
+                    $('#new_subject').show();
+                }
+            });
+        });
+
+    </script>
     <script src=" {{ asset('js/toggle-assignment-type.js') }}"></script>
 @endpush

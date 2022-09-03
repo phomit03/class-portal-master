@@ -90,6 +90,7 @@ class ClassController extends Controller
         ]);
 
         $user_id = Auth::user()->id;
+        $subject_id = Subject::all();
 
         $class = new Classes;
         $classes = new Classes_User();
@@ -102,6 +103,7 @@ class ClassController extends Controller
             // Insert information into the pivot table for users and classes
             $classes->user_id =$user_id;
             $classes->class_id=$class->id;
+            $classes->subject_id = $subject_id;
             $classes->save();
             return redirect('/class/create')->with('status', 'Class added successfully!');
         }
