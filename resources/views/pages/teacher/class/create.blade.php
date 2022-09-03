@@ -12,7 +12,7 @@
             @if (count(Auth::user()->classes()->get()) > 0)
                 <div class="list-group">
                     @foreach (Auth::user()->classes()->get() as $class)
-                        <a href="{{ url('class/show') }}" class="list-group-item list-group-item-info">
+                        <a href="{{ url('class')}}/{{$class->id}}" class="list-group-item list-group-item-info">
                             <h4 class="list-group-item-heading">
                                 {{ $class->name }} {{ $class->room }}-{{ $class->section }}
                             </h4>
