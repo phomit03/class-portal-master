@@ -71,7 +71,7 @@
 
         <!-- Show class title and instructor's name -->
         <div class="row">
-            @if ($instructor->role == "teacher")
+            @if ($instructor->role == "teacher" && $class1 != null)
                 <div class="col-md-10">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -244,7 +244,7 @@
 {{--                                aria-haspopup="true" aria-expanded="false">--}}
 {{--                            Select Type <span class="caret"></span>--}}
 {{--                        </button>--}}
-                        <select id="subject" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <select id="subject" name="subject" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <option value="">Select Option</option>
                             <option value="avai_Subject">Add Subject Available </option>
                             <option value="new_Subject">Add new Subject </option>
@@ -254,17 +254,19 @@
                     <!--form Subject-->
                     <div id="forms">
                         <div id="avai_subject" class="note" style="display: none">
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/class/' . $class_id . '/subject') }}">
+                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/subject/save/') }}">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label>Subject <span style="color: red">*</span></label>
-                                    <select name="classID" class="custom-select" required>
+                                    <input type="hidden" name="class_id" value="{{$class_id}}"/>
+                                    <select name="subject_id" class="custom-select" required>
                                         <option value="">choose</option>
                                         @foreach($subjects as $items)
-                                            <option @if(old('subject_id') == $items->subject_id) selected @endif value="{{$items->subject_id}}">
+                                            <option @if(old('subject_id') == $items->subject_id) selected @endif value="{{$items->id}}">
                                                 {{$items->name}}
                                             </option>
                                         @endforeach
+
                                     </select>
                                 </div>
                                 <!-- Submit Button -->
@@ -323,13 +325,11 @@
         @endif
 
         <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                    Subject
-                </h4>
-            </div>
-
-            <div class="panel-collapse collapse" role="tabpanel" aria-labellledby="headingOne">
+{{--            <div class="panel-heading" role="tab" id="headingOne">--}}
+{{--                <h4 class="panel-title">--}}
+{{--                    Subject--}}
+{{--                </h4>--}}
+{{--            </div>--}}
                     {{--                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"--}}
                     {{--                                aria-haspopup="true" aria-expanded="false">--}}
                     {{--                            Select Type <span class="caret"></span>--}}
@@ -337,17 +337,15 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                             <tr>
-                                <th>Class Name</th>
                                 <th>Subject Name</th>
                                 <th>Description</th>
                             </tr>
                             </thead>
                             <tbody>
-{{--                            @foreach($students as $item)--}}
+                            @foreach($classes as $item)
                                 <tr>
-                                    <td>abc</td>
-                                    <td>dff</td>
-                                    <td>dsdfg</td>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->description}}</td>
 {{--                                    <td><a href="{{url('/admin/student-edit',['id'=>$item->studentID])}}"><button type="button" class="btn btn-info">Edit</button></a></td>--}}
 {{--                                    <td>--}}
 {{--                                        <form action="{{url("/admin/student-delete",['student'=>$item->studentID])}}" method="post">--}}
@@ -357,10 +355,9 @@
 {{--                                        </form>--}}
 {{--                                    </td>--}}
                                 </tr>
-{{--                            @endforeach--}}
+                            @endforeach
                             </tbody>
                         </table>
-        </div>
         </div>
         <!--End Subject-->
 

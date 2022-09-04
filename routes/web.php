@@ -51,6 +51,7 @@ Route::post('/class', [ClassController::class, 'store']);
 Route::put('/class/{id}', [ClassController::class, 'update']);
 Route::delete('/class/{id}', [ClassController::class, 'destroy']);
 Route::post('/class/{class_id}/student', [ClassController::class, 'addStudents']);
+Route::post('/subject/save/', [ClassController::class, 'saveSubject']);
 
 // Subjects Routes
 Route::get('/subject/create', [\App\Http\Controllers\SubjectController::class, 'create']);

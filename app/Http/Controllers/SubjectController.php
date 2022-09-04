@@ -88,7 +88,7 @@ class SubjectController extends Controller
         $subject = new Subject;
         $class_subject = new Classes_Subject();
         $subject->name = $request->input('name');
-        $subject->description = $request->input('title');
+        $subject->description = $request->input('description');
 
         if ($subject->save()) {
             // Insert information into the pivot table for users and classes
