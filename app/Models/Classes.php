@@ -13,7 +13,7 @@ class Classes extends Model
     protected $keyType ='integer';
 
     protected $fillable = [
-        'name', 'title', 'room', 'section'
+        'name', 'title', 'room', 'section','class_code'
     ];
 
     /**
@@ -84,5 +84,6 @@ class Classes extends Model
     {
         return $this->belongsToMany(Subject::class,"classes_subjects","class_id","subject_id");
     }
+
 
 }

@@ -76,8 +76,8 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                {{ $class1->name }} - {{ $class1->section }} - {{ $class1->title }} - {{ $class1->room }}
-                                <a href="{{ url('/profile/' . $instructor->id) }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</a>
+                                {{ $class1->name }} - {{ $class1->section }} - {{ $class1->title }} - {{ $class1->room }} -
+                                <a href="{{ url('/profile/' . $instructor->id) }}"> {{ $instructor->first_name }} {{ $instructor->last_name }}</a>
                             </h4>
                         </div>
                     </div>
@@ -95,8 +95,8 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                {{ $class1->name }} - {{ $class1->section }} - {{ $class1->title }} - {{ $class1->room }}
-                                <a href="{{ url('/profile/' . $instructor->id) }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</a>
+                                {{ $class1->name }} - {{ $class1->section }} - {{ $class1->title }} - {{ $class1->room }} -
+                                <a> {{ $instructor->first_name }} {{ $instructor->last_name }}</a>
                             </h4>
                         </div>
                     </div>
@@ -184,6 +184,12 @@
                             </form>
 
                             <hr>
+                            <div class="col-xs-12 col-md-6 col-md-offset-3">
+                                <h3>Code: {{$class->class_code}}</h3>
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-md-offset-3">
+                                <span>Join by link: <strong>{{url('class/'.$class1->id.$class->class_code)}}</strong></span>
+                            </div>
                             <div class="col-xs-12 col-md-6 col-md-offset-3">
                                 <a href="{{ url('/class/' . $class1->id . '/students') }}">
                                     <button type="button" class="btn btn-success btn-block">Add Students</button>
@@ -280,9 +286,9 @@
                         </div>
 
                         <div id="new_subject" class="note" style="display: none">
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/subject') }}">
+                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/subject/new/save') }}">
                                 {{ csrf_field() }}
-
+                                <input type="hidden" name="class_id" value="{{$class_id}}"/>
                               <!--Name-->
                                 <div class="form-group{{ $errors->has('name') ? ' has-error': '' }}">
                                     <label class="col-md-4 control-label">Name</label>

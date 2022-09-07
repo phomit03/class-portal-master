@@ -114,6 +114,7 @@ class ClassController extends Controller
         $class->title = $request->input('title');
         $class->room = $request->input('room');
         $class->section = $request->input('section');
+        $class->class_code= base64_encode("class_".$class->id);
 
         if ($class->save()) {
             // Insert information into the pivot table for users and classes
@@ -153,10 +154,26 @@ class ClassController extends Controller
         $class_subject = new Classes_Subject();
         // Insert information into the pivot table for users and classes
         $class_subject->class_id = $request->input('class_id');
-        $class_subject->subject_id = $request->input('subject_id');
+        $class_subject->subject_id = $request->input('subjects');
         $class_subject->save();
         return back()->with('status', 'Class added successfully!');
 
+    }
+
+    public function saveNewSubject(Request $request){
+        $class_id = new Classes();
+//        dd($class2);
+        $class_subject = new Classes_Subject();
+//        dd($class_subject);
+        $class_id->name = $request->input('name');
+        $class_id->title = $request->input('title');
+        $class_id->room = $request->input('room');
+        $class_id->section = $request->input('section');
+        // Insert information into the pivot table for users and classes
+        $class_subject->class_id = $request->input('class_id');
+        $class_subject->subject_id = $class_subject->id;
+        $class_subject->save();
+        return back()->with('status', 'Class added successfully!');
     }
 
     /**
