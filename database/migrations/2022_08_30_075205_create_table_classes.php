@@ -19,6 +19,7 @@ class CreateTableClasses extends Migration
             $table->string('title')->nullable();
             $table->string('room')->nullable();
             $table->string('section')->nullable();
+            $table->string('class_code')->unique();
             $table->timestamps();
         });
     }

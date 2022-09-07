@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classes_Subject;
 use App\Models\Classes_User;
 use App\Models\Subject;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Classes;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class ClassController extends Controller
 {
@@ -29,14 +31,22 @@ class ClassController extends Controller
     //chuyển phần này qua subjects
 
 
-     //* Show details about a particular subjects - GET
+    //* Show details about a particular subjects - GET
 
     public function show($id)
     {
         $class = Classes::find($id);
-   //     dd($class);
-        $instructor = Auth::user();
+//        dd($class);
         $subjects = Subject::all();
+//        dd($class_show);
+        $classes = DB::table('classes_subjects')
+            ->where('class_id', $id)
+            ->join('subjects', function ($join) {
+                $join->on('classes_subjects.subject_id', '=', 'subjects.id');
+            })
+            ->get();;
+//        dd($classes);
+        $instructor = Auth::user();
 
 //        $assignments = $class->assignments()->orderBy('due_date', 'desc')->get();
 
@@ -57,13 +67,20 @@ class ClassController extends Controller
 //                }
 //                return ($a->created_at > $b->created_at) ? -1 : 1;
 //            });
-     //   }
-
+        //   }
+//        if ($class->save()) {
+        // Insert information into the pivot table for users and classes
+//            $classes->class_id=$class->id;
+//            $classes->subject_id=$subjects->id;
+//            $classes->save();
+//            return redirect('/class/show')->with('status', 'Class added successfully!');
+        //   }
         return view('pages.teacher.class.show', [
             'class1' => $class,
             'instructor' => $instructor,
             'class_id' => $id,
-            'subjects'=>$subjects,
+            'classes' => $classes,
+            'subjects' => $subjects,
 //            'assignments' => $assignments,
             'recent_activity' => $recent_activity
         ]);
@@ -90,7 +107,6 @@ class ClassController extends Controller
         ]);
 
         $user_id = Auth::user()->id;
-        $subject_id = Subject::all();
 
         $class = new Classes;
         $classes = new Classes_User();
@@ -98,12 +114,12 @@ class ClassController extends Controller
         $class->title = $request->input('title');
         $class->room = $request->input('room');
         $class->section = $request->input('section');
+        $class->class_code= base64_encode("class_".$class->id);
 
         if ($class->save()) {
             // Insert information into the pivot table for users and classes
-            $classes->user_id =$user_id;
-            $classes->class_id=$class->id;
-            $classes->subject_id = $subject_id;
+            $classes->user_id = $user_id;
+            $classes->class_id = $class->id;
             $classes->save();
             return redirect('/class/create')->with('status', 'Class added successfully!');
         }
@@ -130,6 +146,34 @@ class ClassController extends Controller
         if ($class->save()) {
             return redirect('/class/' . $id)->with('status', 'Class updated successfully!');
         }
+    }
+
+    public function saveSubject(Request $request)
+    {
+//        $class2 = new Classes;
+        $class_subject = new Classes_Subject();
+        // Insert information into the pivot table for users and classes
+        $class_subject->class_id = $request->input('class_id');
+        $class_subject->subject_id = $request->input('subjects');
+        $class_subject->save();
+        return back()->with('status', 'Class added successfully!');
+
+    }
+
+    public function saveNewSubject(Request $request){
+        $class_id = new Classes();
+//        dd($class2);
+        $class_subject = new Classes_Subject();
+//        dd($class_subject);
+        $class_id->name = $request->input('name');
+        $class_id->title = $request->input('title');
+        $class_id->room = $request->input('room');
+        $class_id->section = $request->input('section');
+        // Insert information into the pivot table for users and classes
+        $class_subject->class_id = $request->input('class_id');
+        $class_subject->subject_id = $class_subject->id;
+        $class_subject->save();
+        return back()->with('status', 'Class added successfully!');
     }
 
     /**
