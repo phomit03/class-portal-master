@@ -58,6 +58,12 @@
     <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="//cdn.ckeditor.com/4.19.1/basic/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('ckeditor');
+        CKEDITOR.replace('ckeditor1');
+        CKEDITOR.replace('ckeditor2');
+    </script>
 
     <!-- JavaScript Files That May Be Needed For Specific Purposes -->
     @stack('scripts')

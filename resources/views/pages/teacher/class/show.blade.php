@@ -372,118 +372,86 @@
 
                 <div class="panel-body">
                     <div class="btn-group col-md-offset-9">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                            Select Type <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" id="assignment">Assignment</a></li>
-                            {{--<li><a href="#" id="annoucement">Annoucement</a></li>--}}
-                        </ul>
+                        <select id="Action" name="Action" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Type<span class="caret"></span>
+                            <option value="">Select option</option>
+                            <option value="addAssignment">Add Assignment</option>
+                            <option value="addDocument">Add Document</option>
+                        </select>
+
                     </div>
 
                     <!--form assignment-->
-                    <div id="forms">
-                        <div id="assignment-form" class="forms">
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/class/' . $class_id . '/assignment') }}">
-                                {{ csrf_field() }}
-
-
-                                <!-- Title -->
-                                <div class="form-group{{ $errors->has('title') ? ' has-error': ''}}">
-                                    <label class="col-md-3 control-label">Title</label>
-                                    <div class="col-md-5">
-                                        <input type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="Chapter 1 Assignment">
-
-                                        @if ($errors->has('title'))
-                                            <span class="help-block"><strong>{{ $errors->first('title') }}</strong></span>
-                                        @endif
-                                    </div>
+                    <div id="addAssignment" style="display: none" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add Assignment</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-
-                                <!-- Description -->
-                                <div class="form-group{{ $errors->has('description') ? ' has-error': ''}}">
-                                    <label class="col-md-3 control-label">Description</label>
-                                    <div class="col-md-5">
-                                        <textarea class="form-control" name="description" value="{{ old('description') }}" placeholder="Type in the description here..." rows="4"></textarea>
-
-                                        @if ($errors->has('description'))
-                                            <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
-                                        @endif
-                                    </div>
+                                <div class="modal-body"><form>
+                                        <div class="form-group">
+                                            <label for="title" class="col-form-label">Title:</label>
+                                            <input type="text" class="form-control" id="title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description" class="col-form-label">Description:</label>
+                                            <textarea class="form-control" id="ckeditor1"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="attachment" class="col-form-label">Attachment:</label>
+                                            <input type="file" class="form-control" id="inputFile">
+                                        </div>
+                                        <div>
+                                            <label for="" class="col-form-label">Due:</label>
+                                            <input type="datetime-local" class="form-control" id="due">
+                                        </div>
+                                    </form>
                                 </div>
-
-                                <!--Source-->
-                                <div class="form-group{{ $errors->has('source') ? ' has-error': ''}}">
-                                    <label class="col-md-3 control-label">Source</label>
-                                    <div class="col-md-5">
-                                        <input type="file" class="form-control" name="source" value="{{ old('source') }}" rows="4">
-
-                                        @if ($errors->has('source'))
-                                            <span class="help-block"><strong>{{ $errors->first('source') }}</strong></span>
-                                        @endif
-                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" value="Accept" class="btn btn-primary">Accept</button>
+                                    <button type="button" value="Close" class="btn btn-light" data-dismiss="modal">Close</button>
                                 </div>
-
-                                <!-- Due Date -->
-                                <div class="form-group{{ $errors->has('due_date') ? ' has-error': ''}}">
-                                    <label class="col-md-3 control-label">Due Date</label>
-                                    <div class="col-md-5">
-                                        <input type="datetime-local" class="form-control" name="due_date" value="{{ old('due_date') }}">
-
-                                        @if ($errors->has('due_date'))
-                                            <span class="help-block"><strong>{{ $errors->first('due_date') }}</strong></span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <!-- Submit Button -->
-                                <div class="form-group">
-                                    <div class="col-md-4 col-md-offset-6">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-
-                            </form>
+                            </div>
                         </div>
+                    </div>
 
-                        {{--<div id="annoucement-form" class="forms">
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/class/' . $class_id . '/annoucement') }}">
-                                {{ csrf_field() }}
-
-                                <!-- Title -->
-                                <div class="form-group{{ $errors->has('title') ? ' has-error': ''}}">
-                                    <label class="col-md-3 control-label">Title</label>
-                                    <div class="col-md-5">
-                                        <input type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="Important Annoucement">
-
-                                        @if ($errors->has('title'))
-                                            <span class="help-block"><strong>{{ $errors->first('title') }}</strong></span>
-                                        @endif
-                                    </div>
+                    <div id="addDocument" style="display: none" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add Document</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-
-                                <!-- Message -->
-                                <div class="form-group{{ $errors->has('message') ? ' has-error': ''}}">
-                                    <label class="col-md-3 control-label">Message</label>
-                                    <div class="col-md-5">
-                                        <textarea class="form-control" name="message" value="{{ old('message') }}" placeholder="Type in your message here..." rows="3"></textarea>
-
-                                        @if ($errors->has('message'))
-                                            <span class="help-block"><strong>{{ $errors->first('message') }}</strong></span>
-                                        @endif
-                                    </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="title" class="col-form-label">Title:</label>
+                                            <input type="text" class="form-control" id="recipient-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description" class="col-form-label">Description:</label>
+                                            <textarea class="form-control" id="ckeditor2"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="attach" class="col-form-label">Attachment:</label>
+                                            <input type="file" class="form-control" id="inputFile">
+                                        </div>
+                                        <div>
+                                            <label for="" class="col-form-label">Due:</label>
+                                            <input type="datetime-local" class="form-control" id="due">
+                                        </div>
+                                    </form>
                                 </div>
-
-                                <!-- Submit Button -->
-                                <div class="form-group">
-                                    <div class="col-md-4 col-md-offset-6">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" value="Accept" class="btn btn-primary">Accept</button>
+                                    <button type="button" value="Close" class="btn btn-light" data-dismiss="modal">Close</button>
                                 </div>
-
-                            </form>
-                        </div>--}}
+                            </div>
+                        </div>
                     </div>
                     <!--end form-->
                 </div>
@@ -511,6 +479,23 @@
             });
         });
 
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.modal').hide();
+            $('#Action').change(function () {
+                $('.modal').hide();
+                var val = $(this).val();
+                $('#addAssignment').hide();
+                $('#addDocument').hide();
+                if (val == 'addAssignment') {
+                    $('#addAssignment').modal();
+                }
+                else if (val == 'addDocument') {
+                    $('#addDocument').modal();
+                }
+            });
+        });
     </script>
     <script src=" {{ asset('js/toggle-assignment-type.js') }}"></script>
 @endpush
