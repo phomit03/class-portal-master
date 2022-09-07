@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/show-subject.css') }}">
 
     <script type="text/javascript" src="{{ asset('js/defer.js') }}"></script>
     <script>
@@ -33,19 +34,15 @@
     @include('layouts.navigation')
 
     <!-- main content -->
-    <main id="site-main" class="site-main" style="padding: 30px 60px 45px;">
+    <main id="site-main" class="site-main" style="padding-top: 30px">
         <div class="container wrap-list-classes">
-            <div class="edn-tabs">
-                <div id="tab-home-page" class="group-head-tab-control">
-                    @if(Auth::user()->role == 'teacher')
-                        <div class="page-header" style="margin-bottom: 20px">
-                            <h2 class="text-right">@yield('page-header')</h2>
-                        </div>
-                    @endif
-                    <div class="row">
-                        @yield('content')
-                    </div>
+            @if(Auth::user()->role == 'teacher')
+                <div class="page-header" style="margin-bottom: 20px">
+                    <h2 class="text-right">@yield('page-header')</h2>
                 </div>
+            @endif
+            <div>
+                @yield('content')
             </div>
         </div>
     </main>

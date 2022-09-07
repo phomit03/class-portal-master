@@ -27,8 +27,8 @@
                                 </a>
                             </li>
                         @endif
-                        <li class="menu-item list-slots {{request()->segment(1) == 'subject' ? 'active' : '' }}">
-                            <a class="" href="{{url('/subject/create')}}" title="Subjects">
+                        <li class="menu-item list-slots {{request()->segment(1) == 'list-subject' ? 'active' : '' }}">
+                            <a class="" href="{{url('/list-subject')}}" title="Subjects">
                                 <i class="las la-book"></i> Subjects
                             </a>
                         </li>
@@ -38,7 +38,7 @@
                             </a>
                         </li>
                         <li class="menu-item list-assignments user-support-link">
-                            <a class="" href="#support" title="Support">
+                            <a class="" href="/support" title="Support">
                                 <i class="la la-support"></i> Support
                             </a>
                         </li>
@@ -51,7 +51,9 @@
         </div>
         <ul id="header-account" class="header-account none-list">
             <li class="user-support-link">
-                <h3 class="fs-16 mg-b-0 mg-r-4">Support</h3>
+                <a class="" href="/support" title="Support">
+                    <h3 class="fs-16 mg-b-0 mg-r-4">Support</h3>
+                </a>
             </li>
             <li class="user-guide-link">
                 <a class="" href="https://faistatic.edunext.vn/assets/attachments/Huong_dan_KTXH_tren_EduNext_Sp22_Sinh_Vien.pdf" target="_blank" title="User Guide">User Guide</a>
@@ -97,7 +99,9 @@
                             <a href="{{ url('/profile') }}" title="{{ Auth::user()->email }}">
                                 <div class="user-box">
                                     <span class="avatar-place-holder in-action-box">
-                                        <img src="{{(Auth::user()->avatar) ? asset(Auth::user()->avatar) : asset('uploads/avatar/user-default.png') }}" alt class="w-px-40 h-auto rounded-circle" />
+                                        <img src="{{(Auth::user()->avatar) ? asset(Auth::user()->avatar) : asset('uploads/avatar/user-default.png') }}"
+                                             alt class="w-px-40 h-auto rounded-circle"
+                                        />
                                     </span>
                                     <div class="right">
                                         <p class="user-name">
