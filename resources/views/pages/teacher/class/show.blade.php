@@ -396,7 +396,8 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body"><form>
+                                <div class="modal-body">
+                                    <form>
                                         <div class="form-group">
                                             <label for="title" class="col-form-label">Title:</label>
                                             <input type="text" class="form-control" id="title">
