@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Google Sign In
+// Google Sign In
+Route::post('/get-google-sign-in-url', [\App\Http\Controllers\Api\GoogleController::class, 'getGoogleSignInUrl']);
+Route::get('/callback', [\App\Http\Controllers\Api\GoogleController::class, 'loginCallback']);

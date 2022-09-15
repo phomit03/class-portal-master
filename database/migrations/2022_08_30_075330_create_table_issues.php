@@ -15,9 +15,11 @@ class CreateTableIssues extends Migration
     {
         Schema::create('issues', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type')->nullable();
-            $table->text('detail');
-            $table->boolean('is_resolved');
+            $table->string('phone');
+            $table->string('email');
+            $table->text('describe');
+            $table->string('attachments')->nullable();
+            $table->boolean('is_resolved')->default(0);
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });

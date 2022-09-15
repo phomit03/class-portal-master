@@ -37,4 +37,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Copyright -->
+    <div class="text-center" style="background-color: rgba(0, 0, 0, 0.025); padding: 0.5rem;color: rgba(60,60,60,0.86); font-size: 13px">
+        © 2022 Copyright:
+        <a class="text-reset fw-bold" href="/about-us">GroupTwo - T2108M | FPT Aptech</a>
+    </div>
+    <!-- Copyright -->
 </footer>

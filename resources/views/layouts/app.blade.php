@@ -34,16 +34,14 @@
     @include('layouts.navigation')
 
     <!-- main content -->
-    <main id="site-main" class="site-main" style="padding-top: 30px">
-        <div class="container wrap-list-classes">
-            @if(Auth::user()->role == 'teacher')
-                <div class="page-header" style="margin-bottom: 20px">
-                    <h2 class="text-right">@yield('page-header')</h2>
-                </div>
-            @endif
-            <div>
-                @yield('content')
+    <main id="site-main" class="site-main" style="padding: 30px 0 40px">
+        @if(Auth::user()->role == 'teacher')
+            <div class="page-header" style="margin-bottom: 20px">
+                <h2 class="text-right">@yield('page-header')</h2>
             </div>
+        @endif
+        <div>
+            @yield('content')
         </div>
     </main>
     <!-- end main content -->

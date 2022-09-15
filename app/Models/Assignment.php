@@ -13,7 +13,7 @@ class Assignment extends Model
     protected $keyType ='integer';
 
     protected $fillable = [
-      'title', 'description', 'source', 'due_date', 'subject_id'
+        'title', 'description', 'source', 'due_date', 'subject_id', 'teacher_id', 'class_id'
     ];
 
     /**

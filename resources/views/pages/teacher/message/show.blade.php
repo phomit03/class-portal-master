@@ -5,10 +5,10 @@
 @section('page-header', 'Message Details')
 
 @section('content')
+    <div class="container wrap-list-classes">
+        @include('pages.teacher.session-data')
 
-    @include('pages.teacher.session-data')
-
-    <div class="col-xs-12 col-md-12">
+        <div class="col-xs-12 col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -36,5 +36,6 @@
 
             </div>
         </div>
+    </div>
     </div>
 @endsection

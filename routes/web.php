@@ -1,13 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\MessageController;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\ClassController;
-use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\Teacher\AssignmentController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 
 /*
@@ -22,6 +23,9 @@ use App\Http\Controllers\SubjectController;
 */
 
 Auth::routes();
+
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 Route::get('/', function () {
     if (Auth::guest()) {
@@ -43,6 +47,9 @@ Route::get('/show-subject', function (){
 });
 Route::get('/show-assignment', function (){
     return view('pages.student.assignment.show');
+});
+Route::get('/assignment-details', function (){
+    return view('pages.student.assignment.show-details');
 });
 
 // User Routes
@@ -81,3 +88,7 @@ Route::delete('/message/{message_id}', [MessageController::class, 'destroy']);
 Route::get('/message/', [MessageController::class, 'showAll']);
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

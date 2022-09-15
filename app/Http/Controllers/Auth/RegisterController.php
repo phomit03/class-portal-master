@@ -66,7 +66,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $role = 'student';
-        $regex_student = '/^[a-z]{2,4}+\d{1,4}@fpt\.edu\.vn$/';
+        /*$regex_student = '/^[a-z]{2,4}+\d{1,4}@fpt\.edu\.vn$/';*/
 
         /**
          * Assign the appropriate role based on the regular expression

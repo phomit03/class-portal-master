@@ -17,16 +17,8 @@ class SubjectController extends Controller
         $this->middleware('auth');
     }
 
-//    public function show($id)
-//    {
-//        //in ra list subjects ở trong class do
-//    }
 
-    //chuyển phần này qua subjects
-
-
-    //* Show details about a particular subjects - GET
-
+    // Show details about a particular subjects - GET
     public function show($id)
     {
         $subject = Subject::find($id);
@@ -38,20 +30,20 @@ class SubjectController extends Controller
         // assignments and annoucement, then sort date that
         // it was created
         $recent_activity = array();
-//
-//        if (count($assignments) > 0 || count($assignments) > 0) {
-//            foreach ($assignments as $assignment) {
-//                $assignment->type = 'assignment';
-//                array_push($recent_activity, $assignment);
-//            }
-//
-//            usort($recent_activity, function($a, $b) {
-//                if ($a->created_at == $b->created_at) {
-//                    return 0;
-//                }
-//                return ($a->created_at > $b->created_at) ? -1 : 1;
-//            });
-        //   }
+
+        /*if (count($assignments) > 0 || count($assignments) > 0) {
+            foreach ($assignments as $assignment) {
+                $assignment->type = 'assignment';
+                array_push($recent_activity, $assignment);
+            }
+
+            usort($recent_activity, function($a, $b) {
+                if ($a->created_at == $b->created_at) {
+                    return 0;
+                }
+                return ($a->created_at > $b->created_at) ? -1 : 1;
+            });
+        }*/
 
         return view('pages.teacher.subject.show', [
             'subject' => $subject,
@@ -83,7 +75,7 @@ class SubjectController extends Controller
             'description' => 'string|max:255|nullable',   // Roadmap To Computing
         ]);
 
-//        $class_id = Auth::user()->classes()->id;
+        //$class_id = Auth::user()->classes()->id;
 
         $subject = new Subject;
         $class_subject = new Classes_Subject();
@@ -92,9 +84,11 @@ class SubjectController extends Controller
 
         if ($subject->save()) {
             // Insert information into the pivot table for users and classes
-//            $class_subject->classes_id =$class_id;
-//            $class_subject->subject_id=$subject->id;
-//            $class_subject->save();
+
+            /* $class_subject->classes_id =$class_id;
+            $class_subject->subject_id=$subject->id;
+            $class_subject->save(); */
+
             return redirect('/class/create')->with('status', 'Subject added successfully!');
         }
     }

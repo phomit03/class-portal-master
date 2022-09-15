@@ -32,18 +32,18 @@
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M11.0242 7.57051L10.8009 8.48015L9.73088 8.48029L9.62911 8.48714C9.26304 8.5368 8.98088 8.8506 8.98088 9.23029L8.98773 9.33206C9.03739 9.69814 9.35119 9.98029 9.73088 9.98029L10.4339 9.98015L10.0459 11.5662L9.25 11.5671L9.14823 11.5739C8.78215 11.6236 8.5 11.9374 8.5 12.3171L8.50685 12.4189C8.55651 12.7849 8.8703 13.0671 9.25 13.0671L9.67887 13.0662L9.55583 13.5734L9.5383 13.6739C9.49956 14.0413 9.73733 14.3899 10.1061 14.4801L10.2066 14.4976C10.574 14.5364 10.9227 14.2986 11.0129 13.9298L11.2229 13.0662H12.7619L12.6444 13.5841L12.6284 13.6848C12.595 14.0528 12.8379 14.3979 13.208 14.4827L13.3087 14.4987C13.6766 14.5321 14.0217 14.2892 14.1065 13.9191L14.3009 13.0662L15.2416 13.0671L15.3433 13.0602C15.7094 13.0106 15.9916 12.6968 15.9916 12.3171L15.9847 12.2153C15.935 11.8492 15.6212 11.5671 15.2416 11.5671L14.6449 11.5662L15.0079 9.98015L15.7279 9.98029L15.8297 9.97345C16.1958 9.92378 16.4779 9.60999 16.4779 9.23029L16.4711 9.12852C16.4214 8.76245 16.1076 8.48029 15.7279 8.48029L15.3519 8.48015L15.4818 7.9162L15.4979 7.81547C15.5312 7.44755 15.2883 7.10244 14.9182 7.01765L14.8175 7.0016C14.4496 6.96825 14.1045 7.21112 14.0197 7.58122L13.8129 8.48015H12.3449L12.4812 7.92691L12.4988 7.82643C12.5375 7.45904 12.2997 7.11041 11.9309 7.02019C11.5286 6.92177 11.1226 7.16816 11.0242 7.57051ZM11.9779 9.98015H13.4689L13.1059 11.5662H11.5899L11.9779 9.98015ZM6.5 2C5.11929 2 4 3.11929 4 4.5V19.5C4 20.8807 5.11929 22 6.5 22H19.75C20.1642 22 20.5 21.6642 20.5 21.25C20.5 20.8358 20.1642 20.5 19.75 20.5H6.5C5.94772 20.5 5.5 20.0523 5.5 19.5H19.75C20.1642 19.5 20.5 19.1642 20.5 18.75V4.5C20.5 3.11929 19.3807 2 18 2H6.5ZM19 18H5.5V4.5C5.5 3.94772 5.94772 3.5 6.5 3.5H18C18.5523 3.5 19 3.94772 19 4.5V18Z" fill="#666666"></path>
                     </svg>
-                    Name Subject
+                    Subject: Name Subject
                 </li>
                 <li>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.2501 2.00052C18.7689 2.00052 20.0001 3.23173 20.0001 4.75052V19.2488C20.0001 20.7675 18.7689 21.9988 17.2501 21.9988H6.75C5.23122 21.9988 4 20.7675 4 19.2488V4.75052C4 3.49158 4.84596 2.43023 6.00044 2.10391L5.99963 3.75071C5.69623 3.97877 5.5 4.34173 5.5 4.75052V19.2488C5.5 19.9391 6.05964 20.4988 6.75 20.4988H17.2501C17.9405 20.4988 18.5001 19.9391 18.5001 19.2488V4.75052C18.5001 4.06016 17.9405 3.50052 17.2501 3.50052L15 3.5V2L17.2501 2.00052ZM14.0001 2V10.1389C14.0001 10.886 13.2007 11.1665 12.7109 10.9033L12.6279 10.8512L10.5019 9.56575L8.42379 10.8172C7.92411 11.1779 7.09342 10.9564 7.00736 10.2594L7.0001 10.1389V2H14.0001ZM12.5001 3.5H8.5001V9.02327L10.0734 8.07421C10.3377 7.93602 10.6574 7.93341 10.8906 8.05036L12.5001 9.02396V3.5Z" fill="#666666"></path>
                     </svg>
-                    Name Class
+                    Class: Name Class
                 </li>
             </ul>
             <article class="session-detail-content row">
                 <!--question-->
-                <div class="col-12 col-lg-8 col-xl-8 session-main-content">
+                <div class="col-12 col-lg-10 col-xl-10 session-main-content">
                     <div class="edn-tabs ui-tabs ui-widget ui-widget-content">
                         <!--question-->
                         <div class="session-category ui-tabs-panel ui-widget-content" id="session-category" aria-labelledby="session-category-tab" role="tabpanel" aria-hidden="false">
@@ -71,7 +71,7 @@
                                                     </i>
                                                     <!--end-icon-->
                                                     <div class="lessons-title lessons-title-sub acivity-sub-item text-normal">
-                                                        <a class="activity-sum text-decoration-none" href="assignment/show-details" title="CQ1">
+                                                        <a class="activity-sum text-decoration-none" href="/assignment-details" title="Title Assignment">
                                                             <span class="activity-name text-semibold mg-b-10">
                                                                 Title
                                                             </span>
@@ -98,64 +98,6 @@
                 </div>
                 <!--/question-->
 
-                <!--tab-panel-->
-                <aside class="col-12 col-lg-4 col-xl-4 course-sidebar hide-on-992">
-                    <div class="wrap-course-sidebar course-sidebar-sticky">
-                        <div class="top">
-                            <div class="course-thumb-wrap">
-                            </div>
-                            <div class="course-sumary-desktop pd-15">
-                                <!--chat class-->
-                                <div class="wrap-button-class-chat rounded" style="margin-top: 25px">
-                                    <a href="/message" class="accent-color start-quick-chat text-decoration-none" title="Chat with class">
-                                        <span class="bi bi-chat"></span>
-                                        Chat with class
-                                    </a>
-                                </div>
-                                <div class="course-sumary">
-                                    <div class="lectures-section mg-t-20">
-                                        <div class="heading-lectures-section mg-b-20">
-                                            <h4 class="fs-16 mg-0">Lecturer (1)</h4>
-                                        </div>
-                                        <ul class="none-list mg-0">
-                                            <li class="lecture-item mg-b-16">
-                                                <div class="user-acc">
-                                                    <img src=" {{ asset('uploads/avatar/user-default.png') }}" alt="HOATQ4@FPT.EDU.VN" class="user-avatar">
-                                                    <div class="acc-content-right">
-                                                        <div class="wrap-user-name">
-                                                            <span class="user-name text-semibold fs-14 is-email" title="HOATQ4@FPT.EDU.VN">HOATQ4@FPT.EDU.VN</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="heading-lectures-section mg-b-20">
-                                            <h4 class="fs-16 mg-0">Students (10)</h4>
-                                        </div>
-                                        <!--foreach()-->
-                                        <ul class="none-list mg-0">
-                                            <li class="lecture-item mg-b-16">
-                                                <div class="user-acc">
-                                                    <img src=" {{ asset('uploads/avatar/user-default.png') }}" alt="THAONXTH2108014@FPT.EDU.VN" class="user-avatar">
-                                                    <div class="acc-content-right">
-                                                        <div class="wrap-user-name">
-                                                            <span class="user-name text-semibold fs-14 is-email" title="THAONXTH2108014@FPT.EDU.VN">THAONXTH2108014@FPT.EDU.VN</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <!--end-foreach()-->
-                                    </div>
-                                </div>
-
-                                <div class="row mg-t-10 update-button-detail" style="display: none;"></div>
-                                <div class="row mg-t-10 export-class-activity" style="display: none;"></div>
-                            </div>
-                            <!--End Case studying-->
-                        </div>
-                </aside>
-                <!--/tab-panel-->
             </article>
         </div>
 @endsection

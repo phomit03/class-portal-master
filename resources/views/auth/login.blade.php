@@ -24,18 +24,17 @@
         <a class="btn btn-secondary active" href="#">Login</a>
     </div>
 
-    <ul class="list-social-login">
-
-        <li class="social-login-item">
-            <a class="btn btn-social-login google-login" href="#">
-                <img src="{{ asset('uploads/logo/google.png') }}" alt='Login with Google account'></img>
-                Sign in with @fpt.edu.vn
-            </a>
-        </li>
-    </ul>
-
     <form class="indentity-form" action="{{ url('/login') }}" method="post">
         @csrf
+
+        <ul class="list-social-login">
+            <li class="social-login-item">
+                <a class="btn-social-login google-login" style="font-size: 16px" href="{{ url('auth/google') }}">
+                    <img src="{{ asset('uploads/logo/google.png') }}" alt='Login with Google account'></img>
+                    Sign in with @fpt.edu.vn
+                </a>
+            </li>
+        </ul>
 
         <div class="wrap-form-field">
             <div class="form-group group-width-icon{{ $errors->has('email') ? ' has-error' : '' }}">
