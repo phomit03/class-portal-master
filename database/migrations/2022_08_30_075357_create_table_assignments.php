@@ -18,8 +18,9 @@ class CreateTableAssignments extends Migration
             $table->string('title');
             $table->text('description');
             $table->text('source')->nullable();
-            $table->datetime('due_date');
+            $table->datetime('due_date')->nullable();
             $table->integer('subject_id')->unsigned();
+            $table->tinyInteger('status')->default('0');
 
             $table->timestamps();
         });

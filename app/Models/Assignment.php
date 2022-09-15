@@ -13,7 +13,7 @@ class Assignment extends Model
     protected $keyType ='integer';
 
     protected $fillable = [
-      'title', 'description', 'source', 'due_date', 'subject_id'
+        'title', 'description', 'source', 'due_date', 'subject_id', 'teacher_id', 'class_id'
     ];
 
     /**
@@ -26,8 +26,8 @@ class Assignment extends Model
      */
     public function setTitleAttribute($value)
     {
-      $value = strtolower($value);
-      $this->attributes['title'] = ucwords($value);
+        $value = strtolower($value);
+        $this->attributes['title'] = ucwords($value);
     }
 
     /**
@@ -38,7 +38,7 @@ class Assignment extends Model
      */
     public function setDueDateAttribute($value)
     {
-      $this->attributes['due_date'] = $value;
+        $this->attributes['due_date'] = $value;
     }
 
     /**
@@ -50,7 +50,7 @@ class Assignment extends Model
      */
     public function setDescriptionAttribute($value)
     {
-      $this->attributes['description'] = ucfirst($value);
+        $this->attributes['description'] = ucfirst($value);
     }
 
 
@@ -61,9 +61,20 @@ class Assignment extends Model
      *
      * @return Response
      */
-    public function subjects()
+    public function subject()
     {
-        return $this->belongsTo('App\Models\Subject');
+        return $this->belongsTo(Subject::class, 'subject_id', 'id');
+    }
+
+    /**
+     * Set the relationship between the Assignment
+     * model and the Subject model
+     *
+     * @return Response
+     */
+    public function classe()
+    {
+        return $this->belongsTo(Classes::class, 'class_id', 'id');
     }
 
     /**
