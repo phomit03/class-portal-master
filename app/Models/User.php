@@ -3,16 +3,19 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use HasFactory;
+    use Notifiable;
+
     protected $table = 'users';
     protected $primaryKey = 'id';
     protected $keyType ='integer';
 
     protected $fillable = [
-        'avatar', 'first_name', 'last_name', 'email', 'password', 'role'
+        'google_id', 'avatar', 'first_name', 'last_name', 'email', 'password', 'role'
     ];
 
     /**

@@ -4487,7 +4487,7 @@ tr.is-online .user-acc .dot.online {
     --btn-color: #34495E;
     --btn-hv-background: #F2994A;
     --btn-hv-shadow: rgba(242, 153, 74, 0.5);
-    --btn-hv-color: #34495E;
+    --btn-hv-color: #ffffff;
     --btn-cmt-bg-hover: #E2F2FF;
     --active-bg: #D3EBFF;
     --author-color: #8F9DAB;
@@ -5451,13 +5451,7 @@ input[type="radio"] {
     height: auto;
     line-height: 1;
     padding: 0; }
-/*Class-copy*/
-.class-form input {
-    width: 330px !important;
-    margin: 5px;
-    border: none;
-    background-color: #f5f5f5;
-}
+
 ::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
     color: var(--main-color);
@@ -5530,12 +5524,6 @@ select.error, input.error, textarea.error {
 
 button {
     font-family: inherit; }
-
-.class-form button {
-    width: 100px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-}
 
 .submitted button[type=submit], .edn-loading button[type=submit] {
     cursor: not-allowed;
@@ -5690,7 +5678,7 @@ figure.table > table td {
         font-size: 14px; } }
 
 .btn {
-    padding: 5px 8px;
+    padding: 10px 12px;
     cursor: pointer;
     transition: all 300ms;
     text-decoration: none;
@@ -5752,10 +5740,10 @@ figure.table > table td {
     /*pointer-events: none*/ }
 
 .btn-primary {
-    color: var(--main-color);
-    background: var(--btn-background); }
+    color: var(--bg-block);
+    background: var(--seawater); }
 .btn-primary:not(.disabled):hover {
-    background: var(--btn-hv-background);
+    background: #1260a4 !important;
     color: var(--btn-hv-color); }
 .btn-primary:not(.disabled).green {
     color: #fff; }
@@ -6316,7 +6304,7 @@ figure.table > table td {
 
 @media (max-width: 768px) {
     .site-main {
-        padding-top: 70px !important; }
+        padding-top: 60px !important; }
     .course-index .site-main {
         padding-top: 80px !important; }
     .site-header {
@@ -8925,7 +8913,7 @@ tbody.edn-ranking-style tr:nth-child(3) td:first-child span {
     #modal-add-member .content {
         max-height: 500px; }
     .list-members {
-        padding-left: 35px; }
+        padding-left: 35px; } }
 
 @media (max-width: 768px) {
     .search-member-item .user-acc {
@@ -9149,7 +9137,7 @@ input[name="assignment-due-date"] {
 /*For student*/
 .submit-overview {
     display: flex;
-    margin-left: -16px; }
+    /*margin-left: -16px;*/ }
 .submit-overview > div {
     margin-left: 16px;
     background: #FAFAFA;
@@ -9160,7 +9148,7 @@ input[name="assignment-due-date"] {
     max-width: calc(25% - 16px); }
 .submit-overview > div:last-child {
     flex: 0 0 calc(50% - 16px);
-    max-width: calc(50% - 16px); }
+    /*max-width: calc(50% - 16px);*/ }
 .submit-overview > div .top {
     white-space: nowrap;
     margin-bottom: 8px; }
@@ -11598,6 +11586,7 @@ html {
 
 .row {
     display: -ms-flexbox;
+    display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     margin-right: -15px;
@@ -16602,6 +16591,7 @@ textarea.form-control {
     height: 100%;
     overflow: hidden;
     outline: 0;
+    background-color: #00000080;
 }
 
 .modal-dialog {
@@ -16613,6 +16603,7 @@ textarea.form-control {
 
 .modal.fade .modal-dialog {
     transition: transform 0.3s ease-out;
+    transform: translate(0, -50px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -16683,9 +16674,11 @@ textarea.form-control {
     pointer-events: auto;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 0.3rem;
+    border: 1px solid rgb(0 0 0 / 17%);
+    border-radius: 0.6rem;
     outline: 0;
+    top: 20px;
+    left: 7px;
 }
 
 .modal-backdrop {
@@ -16710,13 +16703,14 @@ textarea.form-control {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 1rem 1rem;
+    padding: 1rem 1.5rem;
     border-bottom: 1px solid #dee2e6;
     border-top-left-radius: calc(0.3rem - 1px);
     border-top-right-radius: calc(0.3rem - 1px);
 }
 
 .modal-header .close {
+    font-size: 30px;
     padding: 1rem 1rem;
     margin: -1rem -1rem -1rem auto;
 }
@@ -16724,12 +16718,13 @@ textarea.form-control {
 .modal-title {
     margin-bottom: 0;
     line-height: 1.5;
+    font-size: 23px;
 }
 
 .modal-body {
     position: relative;
     flex: 1 1 auto;
-    padding: 1rem;
+    padding: 1rem 2.5rem;
 }
 
 .modal-footer {
@@ -16737,14 +16732,14 @@ textarea.form-control {
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
-    padding: 0.75rem;
+    padding: 0.75rem 1.5rem;
     border-top: 1px solid #dee2e6;
     border-bottom-right-radius: calc(0.3rem - 1px);
     border-bottom-left-radius: calc(0.3rem - 1px);
 }
 
-.modal-footer > * {
-    margin: 0.25rem;
+.info-contact {
+    max-width: 430px; text-align: left; padding-right: 102px; font-size: 14px;
 }
 
 .modal-scrollbar-measure {
@@ -16757,8 +16752,8 @@ textarea.form-control {
 
 @media (min-width: 576px) {
     .modal-dialog {
-        max-width: 500px;
-        margin: 1.75rem auto;
+        max-width: 600px;
+        margin: 2rem auto;
     }
 
     .modal-dialog-scrollable {
@@ -17342,7 +17337,42 @@ textarea.form-control {
 .picker-switch a {
     font-size: 18px
 }
-.btn-add {
-    float: right;
-    margin: 15px;
+
+.submit-results{
+    border-radius:8px; color: white; background-color: #377dff; width: 200px;
+}
+
+.submit-results:hover{
+    background-color: #2662d0 !important;
+    color: white;
+}
+
+.mg-b-10{
+    margin-left: 10px !important;
+}
+
+.join button{
+    margin: 5px 10px 100px;
+}
+
+.join-class2 {
+    font-size: 14px;
+    color: white;
+    display: inline-block;
+}
+
+.join-class{
+    color: #1a73e8; background-color: #FAFAFA; display: inline-block;
+}
+
+.join-class:hover{
+    background-color: #f1f1f1 !important;
+    border: none;
+    color: #1a73e8;
+}
+
+.join-class2:hover{
+    background-color: #1260a4 !important;
+    border: 1px solid #FAFAFA;
+    color: white !important;
 }

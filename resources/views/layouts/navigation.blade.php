@@ -1,5 +1,4 @@
 <!---Site Header-->
-@php $user = Auth::user() @endphp
 <header id="site-header" class="site-header">
     <div class="container site-header-container">
 
@@ -33,13 +32,13 @@
                                 <i class="las la-book"></i> Subjects
                             </a>
                         </li>
-                        <li class="menu-item list-assignments {{request()->segment(2) == 'assignments' ? 'active' : '' }}">
-                            <a class="" href="{{ $user->role == 'student' ? route('student.assignment.index') : route('teacher.assignment.index') }}" title="Assignments">
+                        <li class="menu-item list-assignments {{request()->segment(1) == 'list-assignment' ? 'active' : '' }}">
+                            <a class="" href="/list-assignment" title="Assignments">
                                 <i class="las la-book"></i> Assignments
                             </a>
                         </li>
-                        <li class="menu-item list-assignments user-support-link">
-                            <a class="support" data-toggle="modal" data-target="#userSupportModal" title="Support">
+                        <li class="menu-item user-guide-link">
+                            <a href="" data-toggle="modal" data-target="#userSupportModal" title="Support">
                                 <i class="la la-support"></i> Support
                             </a>
                         </li>
@@ -50,7 +49,7 @@
                 </ul>
             </nav>
         </div>
-        <ul class="header-account none-list">
+        <ul id="header-account" class="header-account none-list">
             <li class="user-support-link">
                 <a class="support" data-toggle="modal" data-target="#userSupportModal" title="Support">
                     <h3 class="fs-16 mg-b-0 mg-r-4">Support</h3>
@@ -59,7 +58,6 @@
             <li class="user-guide-link">
                 <a class="" href="https://faistatic.edunext.vn/assets/attachments/Huong_dan_KTXH_tren_EduNext_Sp22_Sinh_Vien.pdf" target="_blank" title="User Guide">User Guide</a>
             </li>
-
             <li class="user-chat {{request()->segment(1) == 'message' ? 'active' : '' }}">
                 <div class="chat-icon">
                     <a href="{{ url('/message') }}">
@@ -130,26 +128,62 @@
 </header>
 <!---End Site Header-->
 
+<!--form-support-->
 <div class="modal fade" id="userSupportModal" role="dialog" tabindex="-1" aria-labelledby="supportModal">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Contact Us</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form class="form-horizontal" role="form" method="POST" action="" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label>Phone number: </label>
+                        <input type="text" class="form-control" value="{{ old('phone') }}" name="phone" placeholder="Enter your phone here">
+                        @if ($errors->has('phone'))
+                            <span class="help-block"><strong>{{ $errors->first('phone') }}</strong></span>
+                        @endif
+                    </div>
                     <div class="form-group">
                         <label>Email: </label>
-                        <input type="text" class="form-control" id="email" placeholder="Enter your email here">
+                        <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Enter your email here">
+                        @if ($errors->has('email'))
+                            <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label>Description: </label>
+                        <textarea rows="5" class="form-control" name="describe" placeholder="Enter your description here">{{ old('describe') }}</textarea>
+                        @if ($errors->has('describe'))
+                            <span class="help-block"><strong>{{ $errors->first('describe') }}</strong></span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label>Attachments (if possible): </label>
+                        <input class="custom-file-input" type="file" name="attachments" value="{{ old('attachments') }}" placeholder="Enter your attachments here">
+                        @if ($errors->has('attachments'))
+                            <span class="help-block"><strong>{{ $errors->first('attachments') }}</strong></span>
+                        @endif
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" value="Accept" class="btn btn-primary">Save changes</button>
+                <span class="info-contact">In case of urgent support, please contact us via:<br>
+                    <span style="color: #007bff;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-forward-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zm10.761.135a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L14.293 4H9.5a.5.5 0 0 1 0-1h4.793l-1.647-1.646a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                        +84 123 456 789
+                    </span>
+                </span>
+                <button type="button" value="Accept" class="btn btn-primary" style="width: 120px">Submit</button>
             </div>
         </div>
     </div>
 </div>
+
+

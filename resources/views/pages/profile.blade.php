@@ -80,7 +80,7 @@
                             <hr>
 
                             <!-- Edit Form -->
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/profile/update') }}">
+                            <form class="form-control" role="form" method="POST" action="{{ url('/profile/update') }}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <!-- Avatar -->
                                 <div class="form-group{{ $errors->has('avatar') ? ' has-error': ''}}">
@@ -103,7 +103,7 @@
                                                value="{{ $errors->has('first_name') ? old('first_name') : $user->first_name }}">
 
                                         @if ($errors->has('first_name'))
-                                            <span class="help-block"><strong>{{ $errors->first('last_name') }}</strong></span>
+                                            <span class="help-block"><strong>{{ $errors->first('first_name') }}</strong></span>
                                         @endif
                                     </div>
                                 </div>
@@ -117,6 +117,30 @@
 
                                         @if ($errors->has('last_name'))
                                             <span class="help-block"><strong>{{ $errors->first('last_name') }}</strong></span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('phone') ? ' has-error': ''}}">
+                                    <label class="col-md-3 col-md-offset-1 control-label">Phone number</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="phone"
+                                               value="{{ $errors->has('phone') ? old('phone') : $user->phone }}">
+
+                                        @if ($errors->has('phone'))
+                                            <span class="help-block"><strong>{{ $errors->first('phone') }}</strong></span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('date_of_birth') ? ' has-error': ''}}">
+                                    <label class="col-md-3 col-md-offset-1 control-label">Date of birth</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="date_of_birth"
+                                               value="{{ $errors->has('date_of_birth') ? old('date_of_birth') : $user->date_of_birth }}">
+
+                                        @if ($errors->has('date_of_birth'))
+                                            <span class="help-block"><strong>{{ $errors->first('date_of_birth') }}</strong></span>
                                         @endif
                                     </div>
                                 </div>
